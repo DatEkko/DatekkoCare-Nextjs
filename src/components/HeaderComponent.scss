@@ -1,0 +1,27 @@
+.header-component {
+    font-family: var(--font-lexend);
+
+    .navbar {
+        height: 80px;
+
+        .brand {
+            font-size  : 1.8em;
+            font-family: var(--font-black-ops-one);
+        }
+
+        .navbar-nav {
+            padding-left: 40px;
+            font-size   : 1.1em;
+            gap         : 40px;
+
+            .login-item {
+                border       : 2px solid black;
+                padding      : 8px 20px;
+                border-radius: 10px 0 10px 0;
+                width        : fit-content;
+            }
+        }
+    }
+
+
+}
