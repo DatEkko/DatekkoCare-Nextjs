@@ -14,6 +14,20 @@
             font-size   : 1.1em;
             gap         : 40px;
 
+            .nav-link {
+                &.active {
+                    font-weight  : 600;
+                    border       : 3.5px solid rgb(42, 40, 40);
+                    border-top   : none;
+                    border-left  : none;
+                    border-right : none;
+                    padding-left : 0px;
+                    padding-right: 0px;
+                    border-radius: 2px;
+
+                }
+            }
+
             .login-item {
                 border       : 2px solid black;
                 padding      : 8px 20px;

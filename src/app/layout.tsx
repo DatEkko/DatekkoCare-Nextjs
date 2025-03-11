@@ -1,9 +1,9 @@
 import type { Metadata } from "next";
 import "./globals.scss";
 import { Black_Ops_One, Lexend } from 'next/font/google'
-import HeaderComponent from "../components/HeaderComponent";
 import 'bootstrap/dist/css/bootstrap.min.css';
-
+import 'react-perfect-scrollbar/dist/css/styles.css';
+import HeaderComponent from "@/components/header/HeaderComponent";
 
 const blackOpsOne = Black_Ops_One({
   subsets: ['latin'],
