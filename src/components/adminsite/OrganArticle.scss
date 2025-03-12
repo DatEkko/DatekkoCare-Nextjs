@@ -1,0 +1,45 @@
+.table-data {
+    .head {
+        display        : flex;
+        align-items    : center;
+        justify-content: space-between;
+
+        .title {
+            font-size: 1.5em;
+            padding  : 10px 0;
+        }
+
+        .btn-add {
+            button {
+                border          : none;
+                padding         : 8px 20px;
+                background-color: rgb(10, 134, 10);
+                color           : white;
+                border-radius   : 5px;
+            }
+        }
+    }
+
+    .actions {
+        display        : flex;
+        justify-content: space-around;
+        font-size      : 1.2em;
+        align-items    : center;
+
+        .read {
+            font-size: 1.22em;
+            color    : rgb(13, 159, 159);
+            cursor   : pointer;
+        }
+
+        .edit {
+            color : rgb(219, 110, 0);
+            cursor: pointer;
+        }
+
+        .delete {
+            color : rgb(255, 0, 0);
+            cursor: pointer;
+        }
+    }
+}

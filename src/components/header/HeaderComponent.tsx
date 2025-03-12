@@ -8,7 +8,7 @@ import { usePathname } from "next/navigation";
 const HeaderComponent = () => {
     const pathName = usePathname();
     const router = useRouter();
-    console.log("Pathname: ", pathName)
+
     return (
         <div className="header-component">
             <Navbar expand="lg" className="bg-body-tertiary">

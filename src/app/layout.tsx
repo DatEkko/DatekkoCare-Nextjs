@@ -4,6 +4,7 @@ import { Black_Ops_One, Lexend } from 'next/font/google'
 import 'bootstrap/dist/css/bootstrap.min.css';
 import 'react-perfect-scrollbar/dist/css/styles.css';
 import HeaderComponent from "@/components/header/HeaderComponent";
+import ToastProvider from "@/components/toastify/ToastProvider";
 
 const blackOpsOne = Black_Ops_One({
   subsets: ['latin'],
@@ -28,6 +29,7 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
       <body className={`${blackOpsOne.variable} ${lexend.variable}`}>
         <HeaderComponent />
         {children}
+        <ToastProvider />
       </body>
     </html>
   );
