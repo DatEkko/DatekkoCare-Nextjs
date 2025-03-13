@@ -2,8 +2,15 @@
 
 const URL = "http://localhost:6677/api/v1"
 
-const getAllOrganArticle = async() =>  {
-  const res = await fetch(URL + "/read", {
+const getAllOrganArticle = async (page?: number, limit?: number) => {
+  if (page && limit) {
+    const res = await fetch(URL + `/read?page=${page}&limit=${limit}`, {
+      method: "GET",
+    });
+
+    return await res.json();
+  }
+  const res = await fetch(URL + `/read`, {
     method: "GET",
   });
 
@@ -18,6 +25,8 @@ const handleCreateArticleAction = async (data: any) => {
             "Content-Type": "application/json"
         }
     })
+  
+  console.log(data)
 
     return await res.json();
 }
@@ -42,7 +51,6 @@ const handleUpdateArticleAction = async (data: any) => {
           "Content-Type": "application/json"
       }
   })
-  console.log(data)
   return await res.json();
 }
 

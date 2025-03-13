@@ -47,11 +47,8 @@ const CreateOrganArticleModal = (props: any) => {
         }
     };
 
-
-
     const handleSubmitCreate = async () => {
         const res = await handleCreateArticleAction(article);
-        console.log("Check image: ", article.image)
         if (res && res.EC === 0) {
             handleClose();
             setArticle(defaultArticle);
