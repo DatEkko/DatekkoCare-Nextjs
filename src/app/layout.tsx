@@ -26,10 +26,10 @@ export const metadata: Metadata = {
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <html lang="en">
-      <head>
+      {/* <head>
         <link rel="manifest" href="/manifest.json" />
         <meta name="theme-color" content="#000000" />
-      </head>
+      </head> */}
       <body className={`${blackOpsOne.variable} ${lexend.variable}`}>
         <HeaderComponent />
         {children}

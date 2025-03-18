@@ -1,4 +1,6 @@
 import './DiseasesSection.scss';
+import Card from 'react-bootstrap/Card';
+import Placeholder from 'react-bootstrap/Placeholder';
 
 const DiseasesSection = () => {
     return (
@@ -9,21 +11,26 @@ const DiseasesSection = () => {
             </div>
 
             <div className='disease-content'>
-                <div className='each-disease'>
-                    Bệnh tim mạch
-                </div>
-
-                <div className='each-disease'>
-                    Ung thư
-                </div>
-
-                <div className='each-disease'>
-                    Đái tháo đường
-                </div>
-
-                <div className='each-disease'>
-                    Béo phì
-                </div>
+                {[...Array(4)].map((_, index) => {
+                    return (
+                        <div className='each-disease' key={index}>
+                            <Card style={{ width: '100%' }}>
+                                <Card.Body style={{ height: "180px", backgroundColor: "#ccc", padding: "20px" }} />
+                                <Card.Body>
+                                    <Placeholder as={Card.Title} animation="glow">
+                                        <Placeholder xs={6} />
+                                    </Placeholder>
+                                    <Placeholder as={Card.Text} animation="glow">
+                                        <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
+                                        <Placeholder xs={6} /> <Placeholder xs={8} />
+                                    </Placeholder>
+                                    <Placeholder.Button variant="primary" xs={6} />
+                                </Card.Body>
+                            </Card>
+                        </div>
+                    )
+                })
+                }
             </div>
 
             <div className='explore'>

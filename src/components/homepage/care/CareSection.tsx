@@ -1,4 +1,6 @@
 import './CareSection.scss';
+import Card from 'react-bootstrap/Card';
+import Placeholder from 'react-bootstrap/Placeholder';
 
 const CareSection = () => {
     return (
@@ -9,21 +11,26 @@ const CareSection = () => {
             </div>
 
             <div className='care-content'>
-                <div className='each-care'>
-                    Phòng chóng cảm cúm tại nhà
-                </div>
-
-                <div className='each-care'>
-                    Mẹo hay chữa ho hiệu quả
-                </div>
-
-                <div className='each-care'>
-                    Ngăn ngừa bệnh tim
-                </div>
-
-                <div className='each-care'>
-                    Lộ trình giảm cân hiệu quả
-                </div>
+                {[...Array(4)].map((_, index) => {
+                    return (
+                        <div className='each-care' key={index}>
+                            <Card style={{ width: '100%' }}>
+                                <Card.Body style={{ height: "180px", backgroundColor: "#ccc", padding: "20px" }} />
+                                <Card.Body>
+                                    <Placeholder as={Card.Title} animation="glow">
+                                        <Placeholder xs={6} />
+                                    </Placeholder>
+                                    <Placeholder as={Card.Text} animation="glow">
+                                        <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
+                                        <Placeholder xs={6} /> <Placeholder xs={8} />
+                                    </Placeholder>
+                                    <Placeholder.Button variant="primary" xs={6} />
+                                </Card.Body>
+                            </Card>
+                        </div>
+                    )
+                })
+                }
             </div>
 
             <div className='explore'>

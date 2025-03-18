@@ -24,7 +24,7 @@
                     padding-left : 0px;
                     padding-right: 0px;
                     border-radius: 2px;
-
+                    width        : fit-content;
                 }
             }
 
@@ -36,6 +36,50 @@
             }
         }
     }
+}
 
+@media screen and (min-width: 1200px) and (max-width: 1400px) {
+    .header-component {
+        .navbar {
+            .navbar-nav {
+                padding-left: 40px;
+                font-size   : 1em;
+                gap         : 40px;
+            }
+        }
+    }
+}
 
+@media screen and (min-width: 992px) and (max-width: 1199px) {
+    .header-component {
+        .navbar {
+            .navbar-nav {
+                padding-left: 40px;
+                font-size   : 14px;
+                gap         : 20px;
+            }
+        }
+    }
+}
+
+@media screen and (max-width: 991px) {
+    .header-component {
+        .navbar {
+            .navbar-collapse {
+                &.show {
+                    background-color: white;
+                    z-index         : 1;
+                    padding         : 40px 20px;
+                }
+
+                .navbar-nav {
+                    .nav-link {
+                        &.active {
+                            border: unset;
+                        }
+                    }
+                }
+            }
+        }
+    }
 }

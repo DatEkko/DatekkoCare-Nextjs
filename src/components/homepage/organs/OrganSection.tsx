@@ -1,11 +1,8 @@
-import Image from 'next/image';
 import './OrganSection.scss';
-import tim from "./../../../assets/organs/tim.svg";
-import gan from "./../../../assets/organs/gan.svg";
-import nao from "./../../../assets/organs/não.svg";
-import phoi from "./../../../assets/organs/phổi.svg";
 import { getAllOrganArticle } from '@/app/action';
 import { useEffect, useState } from 'react';
+import Card from 'react-bootstrap/Card';
+import Placeholder from 'react-bootstrap/Placeholder';
 
 const OrganSection = () => {
     const [listData, setListData] = useState([]);
@@ -53,7 +50,7 @@ const OrganSection = () => {
             </div>
 
             <div className='organ-content'>
-                {listData && listData.length > 0 &&
+                {listData && listData.length > 0 ?
                     listData.map((item: any, index) => {
                         return (
                             <div className='each-organ' key={item.id}>
@@ -72,10 +69,27 @@ const OrganSection = () => {
                             </div>
                         )
                     })
+                    :
+                    [...Array(4)].map((_, index) => {
+                        return (
+                            <div className='each-organ' key={index}>
+                                <Card style={{ width: '100%' }}>
+                                    <Card.Body style={{ height: "180px", backgroundColor: "#ccc", padding: "20px" }} />
+                                    <Card.Body>
+                                        <Placeholder as={Card.Title} animation="glow">
+                                            <Placeholder xs={6} />
+                                        </Placeholder>
+                                        <Placeholder as={Card.Text} animation="glow">
+                                            <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
+                                            <Placeholder xs={6} /> <Placeholder xs={8} />
+                                        </Placeholder>
+                                        <Placeholder.Button variant="primary" xs={6} />
+                                    </Card.Body>
+                                </Card>
+                            </div>
+                        )
+                    })
                 }
-
-
-
             </div>
 
             <div className='explore'>

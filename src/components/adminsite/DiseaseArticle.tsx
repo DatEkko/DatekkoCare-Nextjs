@@ -1,57 +1,60 @@
 'use client'
-import './OrganArticle.scss';
+import './DiseaseArticle.scss';
 import { useEffect, useState } from "react";
-import { getAllOrganArticle } from "@/app/action";
 import Table from 'react-bootstrap/Table';
-import { FaBookOpen } from "react-icons/fa6";
 import { FaPen } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
-import CreateOrganArticleModal from '@/modals/CreateOrganArticleModal';
-import ConfirmDeleteOrganModal from '@/modals/ConfirmDeleteOrganModal';
-import UpdateOrganModal from '@/modals/UpdateOrganModal';
 import ReactPaginate from "react-paginate";
 import Placeholder from 'react-bootstrap/Placeholder';
+import { getAllDiseaseArticle } from '@/app/action';
+import CreateDiseaseArticleModal from '@/modals/CreateDiseaseModal';
+import ConfirmDeleteDiseaseModal from '@/modals/ConfimDeleteDiseaseModal';
+import UpdateDiseaseModal from '@/modals/UpdateDiseaseModal';
 
-type OrganArticleType = {
+
+type DiseaseArticleType = {
     id: number;
+    organ_id: number,
     name: string;
     description: string;
     cre: string;
+    Organ: any
 };
 
-const OrganArticle = () => {
+const DiseaseArticle = () => {
     const LIMIT = 5
-    const [listData, setListData] = useState<OrganArticleType[]>([]);
+    const [listData, setListData] = useState<DiseaseArticleType[]>([]);
     const [isShowCreateModal, setIsShowCreateModal] = useState<boolean>(false);
     const [isShowDeleteModal, setIsShowDeleteModal] = useState<boolean>(false);
     const [isShowUpdateModal, setIsShowUpdateModal] = useState<boolean>(false);
-    const [dataDelete, setDataDelete] = useState<OrganArticleType>();
-    const [dataUpdate, setDataUpdate] = useState<OrganArticleType>();
+    const [dataDelete, setDataDelete] = useState<DiseaseArticleType>();
+    const [dataUpdate, setDataUpdate] = useState<DiseaseArticleType>();
     const [currentPage, setCurrentPage] = useState<number>(1);
     const [totalPages, setTotalPages] = useState<number>(0)
 
-    const getDataOrganArticle = async () => {
-        let res = await getAllOrganArticle(+currentPage, LIMIT);
+    const getDataDiseaseArticle = async () => {
+        let res = await getAllDiseaseArticle(+currentPage, LIMIT);
         if (res && res.EC === 0) {
             setListData(res.DT.article)
             setTotalPages(res.DT.totalPages)
+            console.log(res.DT)
         }
     }
 
     useEffect(() => {
-        getDataOrganArticle();
+        getDataDiseaseArticle();
     }, [currentPage])
 
     const handleCreateNewArticle = () => {
         setIsShowCreateModal(true)
     }
 
-    const handleDelete = (article: OrganArticleType) => {
+    const handleDelete = (article: DiseaseArticleType) => {
         setIsShowDeleteModal(true);
         setDataDelete(article);
     }
 
-    const handleUpdate = (article: OrganArticleType) => {
+    const handleUpdate = (article: DiseaseArticleType) => {
         setIsShowUpdateModal(true);
         setDataUpdate(article);
     }
@@ -76,7 +79,7 @@ const OrganArticle = () => {
         <>
             <div className="table-data" >
                 <div className='head'>
-                    <div className="title">Danh sách bài viết về <b>Cơ Quan Nội Tạng</b></div>
+                    <div className="title">Danh sách bài viết về <b>Các Bệnh Thường Gặp</b></div>
                     <div className='btn-add'>
                         <button onClick={() => handleCreateNewArticle()}>Thêm mới</button>
                     </div>
@@ -85,6 +88,7 @@ const OrganArticle = () => {
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Type Organ</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Credit</th>
@@ -97,6 +101,7 @@ const OrganArticle = () => {
                                 return (
                                     <tr key={item.id}>
                                         <td>{item.id}</td>
+                                        <td>{item.Organ?.name}</td>
                                         <td>{item.name}</td>
                                         <td>{truncateText(item.description)}</td>
                                         <td>{item.cre}</td>
@@ -122,7 +127,7 @@ const OrganArticle = () => {
                             :
 
                             <tr>
-                                <th colSpan={5}>
+                                <th colSpan={6}>
                                     <div style={{ textAlign: "left" }}>
                                         <Placeholder animation="glow">
                                             <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
@@ -157,28 +162,30 @@ const OrganArticle = () => {
                 />
             </div>
 
-            <CreateOrganArticleModal
+            <CreateDiseaseArticleModal
                 show={isShowCreateModal}
                 setShow={setIsShowCreateModal}
-                getDataOrganArticle={getDataOrganArticle}
+                getDataDiseaseArticle={getDataDiseaseArticle}
+                listData={listData}
             />
 
-            <ConfirmDeleteOrganModal
+            <ConfirmDeleteDiseaseModal
                 show={isShowDeleteModal}
                 setShow={setIsShowDeleteModal}
                 dataDelete={dataDelete}
-                getDataOrganArticle={getDataOrganArticle}
+                getDataDiseaseArticle={getDataDiseaseArticle}
             />
 
-            <UpdateOrganModal
+            <UpdateDiseaseModal
                 show={isShowUpdateModal}
                 setShow={setIsShowUpdateModal}
                 dataUpdate={dataUpdate}
-                getDataOrganArticle={getDataOrganArticle}
                 setDataUpdate={setDataUpdate}
+                getDataDiseaseArticle={getDataDiseaseArticle}
             />
+
         </>
     )
 }
 
-export default OrganArticle;
+export default DiseaseArticle;

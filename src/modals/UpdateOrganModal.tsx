@@ -6,13 +6,6 @@ import _ from 'lodash';
 import { handleUpdateArticleAction } from '@/app/action';
 import { toast } from 'react-toastify';
 
-type OrganArticle = {
-    name: string,
-    content: string,
-    author: string,
-    image?: any
-}
-
 const UpdateOrganModal = (props: any) => {
     const { show, setShow, getDataOrganArticle, dataUpdate, setDataUpdate } = props;
     const handleClose = () => setShow(false);
@@ -38,23 +31,6 @@ const UpdateOrganModal = (props: any) => {
                 }));
             };
         }
-    };
-
-    const bufferToBase64Image = (obj: any, mimeType: string = "image/jpeg"): string => {
-        if (obj?.type === "Buffer" && Array.isArray(obj.data)) {
-            return `data:${mimeType};base64,${Buffer.from(obj.data).toString("base64")}`;
-        }
-        return "";
-    };
-
-    const isLikeBuffer = (data: any): boolean => {
-        return (
-            typeof data === "object" &&
-            data !== null &&
-            data.type === "Buffer" &&
-            Array.isArray(data.data) &&
-            data.data.every((num: any) => typeof num === "number")
-        );
     };
 
     const handleSubmitUpdate = async () => {

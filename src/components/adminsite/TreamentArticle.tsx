@@ -1,37 +1,40 @@
 'use client'
-import './OrganArticle.scss';
+import './TreatmentArticle.scss';
 import { useEffect, useState } from "react";
-import { getAllOrganArticle } from "@/app/action";
+import { getAllTreatmentArticle } from "@/app/action";
 import Table from 'react-bootstrap/Table';
-import { FaBookOpen } from "react-icons/fa6";
 import { FaPen } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
-import CreateOrganArticleModal from '@/modals/CreateOrganArticleModal';
-import ConfirmDeleteOrganModal from '@/modals/ConfirmDeleteOrganModal';
-import UpdateOrganModal from '@/modals/UpdateOrganModal';
 import ReactPaginate from "react-paginate";
 import Placeholder from 'react-bootstrap/Placeholder';
+import CreateTreatmentArticleModal from '@/modals/CreateTreatmentArticleModal';
+import ConfirmDeleteTreatmentModal from '@/modals/ConfirmDeleteTreatmentModal';
+import UpdateTreatmentModal from '@/modals/UpdateTreatmentModal';
 
-type OrganArticleType = {
+type TreatmentArticleType = {
     id: number;
+    disease_id: number,
     name: string;
     description: string;
     cre: string;
+    Disease: any
 };
 
-const OrganArticle = () => {
+const TreatmentArticle = () => {
     const LIMIT = 5
-    const [listData, setListData] = useState<OrganArticleType[]>([]);
+    const [listData, setListData] = useState<TreatmentArticleType[]>([]);
+    const [currentPage, setCurrentPage] = useState<number>(1);
+    const [totalPages, setTotalPages] = useState<number>(0);
+
     const [isShowCreateModal, setIsShowCreateModal] = useState<boolean>(false);
     const [isShowDeleteModal, setIsShowDeleteModal] = useState<boolean>(false);
     const [isShowUpdateModal, setIsShowUpdateModal] = useState<boolean>(false);
-    const [dataDelete, setDataDelete] = useState<OrganArticleType>();
-    const [dataUpdate, setDataUpdate] = useState<OrganArticleType>();
-    const [currentPage, setCurrentPage] = useState<number>(1);
-    const [totalPages, setTotalPages] = useState<number>(0)
+    const [dataDelete, setDataDelete] = useState<TreatmentArticleType>();
+    const [dataUpdate, setDataUpdate] = useState<TreatmentArticleType>();
 
-    const getDataOrganArticle = async () => {
-        let res = await getAllOrganArticle(+currentPage, LIMIT);
+
+    const getDataTreatmentArticle = async () => {
+        let res = await getAllTreatmentArticle(+currentPage, LIMIT);
         if (res && res.EC === 0) {
             setListData(res.DT.article)
             setTotalPages(res.DT.totalPages)
@@ -39,19 +42,19 @@ const OrganArticle = () => {
     }
 
     useEffect(() => {
-        getDataOrganArticle();
+        getDataTreatmentArticle();
     }, [currentPage])
 
     const handleCreateNewArticle = () => {
         setIsShowCreateModal(true)
     }
 
-    const handleDelete = (article: OrganArticleType) => {
+    const handleDelete = (article: TreatmentArticleType) => {
         setIsShowDeleteModal(true);
         setDataDelete(article);
     }
 
-    const handleUpdate = (article: OrganArticleType) => {
+    const handleUpdate = (article: TreatmentArticleType) => {
         setIsShowUpdateModal(true);
         setDataUpdate(article);
     }
@@ -76,7 +79,7 @@ const OrganArticle = () => {
         <>
             <div className="table-data" >
                 <div className='head'>
-                    <div className="title">Danh sách bài viết về <b>Cơ Quan Nội Tạng</b></div>
+                    <div className="title">Danh sách bài viết về <b>Phương Pháp Trị Bệnh</b></div>
                     <div className='btn-add'>
                         <button onClick={() => handleCreateNewArticle()}>Thêm mới</button>
                     </div>
@@ -85,6 +88,7 @@ const OrganArticle = () => {
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Type Disease</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Credit</th>
@@ -97,6 +101,7 @@ const OrganArticle = () => {
                                 return (
                                     <tr key={item.id}>
                                         <td>{item.id}</td>
+                                        <td>{item.Disease?.name}</td>
                                         <td>{item.name}</td>
                                         <td>{truncateText(item.description)}</td>
                                         <td>{item.cre}</td>
@@ -157,28 +162,29 @@ const OrganArticle = () => {
                 />
             </div>
 
-            <CreateOrganArticleModal
+
+            <CreateTreatmentArticleModal
                 show={isShowCreateModal}
                 setShow={setIsShowCreateModal}
-                getDataOrganArticle={getDataOrganArticle}
+                getDataTreatmentArticle={getDataTreatmentArticle}
             />
 
-            <ConfirmDeleteOrganModal
+            <ConfirmDeleteTreatmentModal
                 show={isShowDeleteModal}
                 setShow={setIsShowDeleteModal}
                 dataDelete={dataDelete}
-                getDataOrganArticle={getDataOrganArticle}
+                getDataTreatmentArticle={getDataTreatmentArticle}
             />
 
-            <UpdateOrganModal
+            <UpdateTreatmentModal
                 show={isShowUpdateModal}
                 setShow={setIsShowUpdateModal}
                 dataUpdate={dataUpdate}
-                getDataOrganArticle={getDataOrganArticle}
+                getDataTreatmentArticle={getDataTreatmentArticle}
                 setDataUpdate={setDataUpdate}
             />
         </>
     )
 }
 
-export default OrganArticle;
+export default TreatmentArticle;

@@ -1,5 +1,7 @@
 'use client'
+import DiseaseArticle from "@/components/adminsite/DiseaseArticle";
 import OrganArticle from "@/components/adminsite/OrganArticle";
+import TreatmentArticle from "@/components/adminsite/TreamentArticle";
 import Tab from 'react-bootstrap/Tab';
 import Tabs from 'react-bootstrap/Tabs';
 
@@ -14,10 +16,10 @@ const AdminSite = () => {
                     <OrganArticle />
                 </Tab>
                 <Tab eventKey="Disease" title="Disease Article">
-                    Tab content for Disease
+                    <DiseaseArticle />
                 </Tab>
                 <Tab eventKey="Treatment" title="Treatment Article">
-                    Tab content for Treatment
+                    <TreatmentArticle />
                 </Tab>
             </Tabs>
 
