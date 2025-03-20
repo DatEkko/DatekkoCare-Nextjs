@@ -14,7 +14,6 @@ import UpdateDiseaseModal from '@/modals/UpdateDiseaseModal';
 
 type DiseaseArticleType = {
     id: number;
-    organ_id: number,
     name: string;
     description: string;
     cre: string;
@@ -79,7 +78,7 @@ const DiseaseArticle = () => {
         <>
             <div className="table-data" >
                 <div className='head'>
-                    <div className="title">Danh sách bài viết về <b>Các Bệnh Thường Gặp</b></div>
+                    <div className="title">Danh sách bài viết về <b>Các Công Trình Hoàn Thiện</b></div>
                     <div className='btn-add'>
                         <button onClick={() => handleCreateNewArticle()}>Thêm mới</button>
                     </div>
@@ -88,7 +87,6 @@ const DiseaseArticle = () => {
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Type Organ</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Credit</th>
@@ -101,7 +99,6 @@ const DiseaseArticle = () => {
                                 return (
                                     <tr key={item.id}>
                                         <td>{item.id}</td>
-                                        <td>{item.Organ?.name}</td>
                                         <td>{item.name}</td>
                                         <td>{truncateText(item.description)}</td>
                                         <td>{item.cre}</td>

@@ -1,5 +1,5 @@
 .footer-container {
-    height          : 400px;
+    min-height      : 450px;
     background-color: black;
     color           : white;
     padding-top     : 20px;
@@ -9,7 +9,7 @@
         justify-content: space-around;
 
         .content-left {
-            width: 25%;
+            width: 30%;
 
             .footer-content {
                 padding    : 20px;
@@ -48,7 +48,7 @@
         }
 
         .content-center {
-            width          : 50%;
+            width          : 45%;
             display        : flex;
             justify-content: center;
 

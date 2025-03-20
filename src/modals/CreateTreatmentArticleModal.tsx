@@ -9,7 +9,6 @@ import { toast } from 'react-toastify';
 
 type TreatmentArticle = {
     name: string,
-    disease_id: number | string,
     content: string,
     author: string,
     image?: any
@@ -20,14 +19,11 @@ const CreateTreatmentArticleModal = (props: any) => {
     const handleClose = () => setShow(false);
     const defaultArticle = {
         name: '',
-        disease_id: '1',
         content: '',
         author: '',
         image: null
     }
 
-    const [listDataDisease, setlistDataDisease] = useState<any[]>([])
-    const [listDataSelect, setListDateSelect] = useState<any>([]);
     const [article, setArticle] = useState<TreatmentArticle>(defaultArticle);
 
     const handleOnChangeInput = (type: keyof TreatmentArticle, value: string) => {
@@ -35,36 +31,6 @@ const CreateTreatmentArticleModal = (props: any) => {
         _article[type] = value;
         setArticle(_article)
     }
-
-    const fetchDataDiseaseArticle = async () => {
-        let res = await getAllDiseaseArticle();
-        if (res && res.EC === 0) {
-            setlistDataDisease(res.DT)
-        }
-    }
-
-    useEffect(() => {
-        fetchDataDiseaseArticle();
-    }, [])
-
-    const builDataSelect = () => {
-        const dataSelect: any[] = [];
-        const _listDataSelect = _.cloneDeep(listDataDisease);
-
-        _listDataSelect.forEach((item: any) => {
-            const obj = {  // Tạo object mới trong mỗi vòng lặp
-                id: item.id,
-                name: item.name
-            };
-            dataSelect.push(obj);
-        });
-
-        setListDateSelect(dataSelect);
-    };
-
-    useEffect(() => {
-        builDataSelect();
-    }, [listDataDisease])
 
     const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
         const file = event.target.files?.[0];
@@ -127,25 +93,6 @@ const CreateTreatmentArticleModal = (props: any) => {
                                         onChange={(event) => handleOnChangeInput("name", event.target.value)}
                                     />
                                 </Form.Group>
-                            </Col>
-
-                            {/* Ô tải ảnh */}
-                            <Col md={6}>
-                                <Form.Label>Bệnh Liên Quan</Form.Label>
-                                <Form.Select onChange={(event) => handleSelectChange(event)}>
-                                    {listDataSelect && listDataSelect.length > 0 &&
-                                        listDataSelect.map((item: any) => {
-                                            return (
-                                                <option
-                                                    key={item.id}
-                                                    value={item.id}
-                                                >
-                                                    {item.name}
-                                                </option>
-                                            )
-                                        })
-                                    }
-                                </Form.Select>
                             </Col>
                         </Row>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">

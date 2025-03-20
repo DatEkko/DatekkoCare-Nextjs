@@ -76,7 +76,7 @@ const OrganArticle = () => {
         <>
             <div className="table-data" >
                 <div className='head'>
-                    <div className="title">Danh sách bài viết về <b>Cơ Quan Nội Tạng</b></div>
+                    <div className="title">Danh sách bài viết về <b>Các Dịch Vụ Chính</b></div>
                     <div className='btn-add'>
                         <button onClick={() => handleCreateNewArticle()}>Thêm mới</button>
                     </div>

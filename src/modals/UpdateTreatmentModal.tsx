@@ -5,12 +5,10 @@ import { Form, Row, Col } from "react-bootstrap";
 import _ from 'lodash';
 import { getAllDiseaseArticle, handleUpdateTreatmentArticleAction } from '@/app/action';
 import { toast } from 'react-toastify';
-import { getAllOrganArticle } from '@/app/action';
 
 const UpdateTreatmentModal = (props: any) => {
     const { show, setShow, getDataTreatmentArticle, dataUpdate, setDataUpdate } = props;
-    const [listDataDisease, setlistDataDisease] = useState<any[]>([])
-    const [listDataSelect, setListDateSelect] = useState<any>([]);
+
 
     const handleClose = () => setShow(false);
 
@@ -36,36 +34,6 @@ const UpdateTreatmentModal = (props: any) => {
             };
         }
     };
-
-    const fetchDataDiseaseArticle = async () => {
-        let res = await getAllDiseaseArticle();
-        if (res && res.EC === 0) {
-            setlistDataDisease(res.DT)
-        }
-    }
-
-    useEffect(() => {
-        fetchDataDiseaseArticle();
-    }, [])
-
-    const builDataSelect = () => {
-        const dataSelect: any[] = [];
-        const _listDataSelect = _.cloneDeep(listDataDisease);
-
-        _listDataSelect.forEach((item: any) => {
-            const obj = {  // Tạo object mới trong mỗi vòng lặp
-                id: item.id,
-                name: item.name
-            };
-            dataSelect.push(obj);
-        });
-
-        setListDateSelect(dataSelect);
-    };
-
-    useEffect(() => {
-        builDataSelect();
-    }, [listDataDisease])
 
     const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedId = event.target.value;
@@ -113,27 +81,6 @@ const UpdateTreatmentModal = (props: any) => {
                                         onChange={(event) => handleOnChangeInput("name", event.target.value)}
                                     />
                                 </Form.Group>
-                            </Col>
-
-
-                            <Col md={6}>
-                                <Form.Label>Bệnh Liên Quan</Form.Label>
-                                <Form.Select
-                                    value={dataUpdate?.disease_id}
-                                    onChange={(event) => handleSelectChange(event)}>
-                                    {listDataSelect && listDataSelect.length > 0 &&
-                                        listDataSelect.map((item: any) => {
-                                            return (
-                                                <option
-                                                    key={item.id}
-                                                    value={item.id}
-                                                >
-                                                    {item.name}
-                                                </option>
-                                            )
-                                        })
-                                    }
-                                </Form.Select>
                             </Col>
                         </Row>
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">

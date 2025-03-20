@@ -5,8 +5,10 @@
         height: 80px;
 
         .brand {
-            font-size  : 1.8em;
-            font-family: var(--font-black-ops-one);
+            font-size      : 1.8em;
+            font-family    : var(--font-black-ops-one);
+            text-decoration: none;
+            color          : rgb(5, 52, 5);
         }
 
         .navbar-nav {

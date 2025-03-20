@@ -39,19 +39,19 @@
                 align-items    : end;
                 padding        : 20px;
 
-                .information {
+                .information-showroom {
                     border-radius   : 10px;
                     background-color: white;
                     padding         : 20px;
                     width           : 30%;
                     z-index         : 3;
 
-                    .name {
+                    .name-project {
                         font-size     : 1.5em;
                         padding-bottom: 10px;
                     }
 
-                    .description {
+                    .description-project {
                         font-size: 1em;
                     }
 
@@ -87,6 +87,60 @@
                 background: rgba(89, 85, 85, 0.211);
                 z-index   : 1;
             }
+
+            .swiper-button-prev {
+                color       : white;
+                font-weight : 800;
+                text-shadow : 2px 2px 8px rgba(0, 0, 0, 0.7);
+                font-size   : 8em;
+                padding-left: 20px;
+            }
+
+            .swiper-button-next {
+                color        : white;
+                font-weight  : 800;
+                text-shadow  : 2px 2px 8px rgba(0, 0, 0, 0.7);
+                padding-right: 20px;
+            }
         }
+
+        .loading-div {
+            height         : 100%;
+            background     : linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+            background-size: 200% 100%;
+            animation      : skeleton-loading 2.5s infinite linear;
+            padding        : 40px;
+
+            .loading-img {
+                border-radius   : 8px;
+                margin-top      : 60px;
+                background-color: #ccc;
+                height          : 60%;
+                display         : flex;
+                align-items     : center;
+                justify-content : center;
+                font-size       : 2em;
+            }
+
+            .loading-info {
+                border-radius   : 8px;
+                margin-top      : 40px;
+                background-color: #ccc;
+                height          : 20%;
+                width           : 30%;
+                float           : right;
+            }
+        }
+    }
+}
+
+
+@keyframes skeleton-loading {
+    0% {
+        background-position: 200% 0;
+    }
+
+    100% {
+        background-position: -200% 0;
     }
 }

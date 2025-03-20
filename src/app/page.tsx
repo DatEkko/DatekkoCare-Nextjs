@@ -7,6 +7,7 @@ import HeroPage from "@/components/homepage/heropage/HeroPage";
 import ServiceSection from "@/components/homepage/services/ServiceSection";
 import ProductionSection from "@/components/homepage/products/ProductSection";
 import PerfectScrollBar from 'react-perfect-scrollbar';
+import ContactComponent from "@/components/homepage/contact/ContactComponent";
 
 export default function Home() {
 
@@ -21,7 +22,7 @@ export default function Home() {
 
 
   return (
-    <div className="homepage" style={{ height: "100vh" }}>
+    <div className="homepage" style={{ height: "100vh", fontFamily: "var(--font-lexend)" }}>
       <PerfectScrollBar>
         <div className="container">
           <HeroPage />
@@ -33,6 +34,7 @@ export default function Home() {
         <div className="container">
           <ProductionSection />
           <CareSection />
+          <ContactComponent />
         </div>
         <FooterComponent />
       </PerfectScrollBar>

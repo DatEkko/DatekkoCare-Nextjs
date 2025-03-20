@@ -13,7 +13,6 @@ import UpdateTreatmentModal from '@/modals/UpdateTreatmentModal';
 
 type TreatmentArticleType = {
     id: number;
-    disease_id: number,
     name: string;
     description: string;
     cre: string;
@@ -79,7 +78,7 @@ const TreatmentArticle = () => {
         <>
             <div className="table-data" >
                 <div className='head'>
-                    <div className="title">Danh sách bài viết về <b>Phương Pháp Trị Bệnh</b></div>
+                    <div className="title">Danh sách bài viết về <b>Chăm Sóc Cây Cảnh</b></div>
                     <div className='btn-add'>
                         <button onClick={() => handleCreateNewArticle()}>Thêm mới</button>
                     </div>
@@ -88,7 +87,6 @@ const TreatmentArticle = () => {
                     <thead>
                         <tr>
                             <th>ID</th>
-                            <th>Type Disease</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Credit</th>
@@ -101,7 +99,6 @@ const TreatmentArticle = () => {
                                 return (
                                     <tr key={item.id}>
                                         <td>{item.id}</td>
-                                        <td>{item.Disease?.name}</td>
                                         <td>{item.name}</td>
                                         <td>{truncateText(item.description)}</td>
                                         <td>{item.cre}</td>

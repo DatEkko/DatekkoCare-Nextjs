@@ -6,11 +6,12 @@ const HeroPage = () => {
     return (
         <div className="hero-page">
             <div className="content-left">
-                <div className="main-title">Hành Trình Sống Xanh: Mang thiên nhiên vào không gian sống</div>
+                <div className="main-title">Hành Trình Sống Xanh<br></br> <span>Mang thiên nhiên vào không gian sống</span></div>
                 <div className="sub-title">
-                    Hành Trình Sống Xanh -
-                    Chúng tôi cung cấp cây cảnh đa dạng, thiết kế sân vườn chuyên nghiệp và
-                    dịch vụ chăm sóc cây xanh, góp phần mang đến một cuộc sống xanh - sạch - đẹp cho bạn và cộng đồng.
+                    <div className='each-service'>✔ Cung cấp cây cảnh đa dạng</div>
+                    <div className='each-service'>✔ Dịch vụ chăm sóc cây xanh</div>
+                    <div className='each-service'>✔ Chăm sóc và thi công hồ cá Koi</div>
+                    <div className='each-service'>✔ Thiết kế sân vườn chuyên nghiệp</div>
                 </div>
                 <div className='btn-action'>
                     <button>Khám phá ngay</button>

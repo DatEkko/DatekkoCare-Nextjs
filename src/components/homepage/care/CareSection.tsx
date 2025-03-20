@@ -80,7 +80,7 @@ const CareSection = () => {
                     :
                     [...Array(4)].map((_, index) => {
                         return (
-                            <div className='each-disease' key={index}>
+                            <div className='each-care' key={index}>
                                 <Card style={{ width: '100%' }}>
                                     <Card.Body style={{ height: "180px", backgroundColor: "#ccc", padding: "20px" }} />
                                     <Card.Body>

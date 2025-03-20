@@ -1,11 +1,12 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import './ShowroomSection.scss';
 import { getAllDiseaseArticle } from '@/app/action';
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Scrollbar } from 'swiper/modules';
+import { Scrollbar, Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
-import sliderImg from "./../../../assets/slider1.jpg";
+import 'swiper/css/navigation';
+import loadingImg from "./../../../assets/loading_image.jpg"
 
 type DiseasesArticle = {
     organ_id: string | number,
@@ -36,6 +37,10 @@ const ShowroomSection = () => {
     useEffect(() => {
         fetchDiseaseArticle()
     }, [])
+
+    useEffect(() => {
+        setShowDataMap({}); // Reset khi vào lại trang chủ
+    }, []);
 
     const truncateText = (text: string, maxLength = 50) => {
         if (text.length <= maxLength) return text;
@@ -70,23 +75,27 @@ const ShowroomSection = () => {
             </div>
 
             <div className='slider-container'>
-                <Swiper
-                    scrollbar={{
-                        hide: true,
-                    }}
-                    modules={[Scrollbar]}
-                >
-                    {listData && listData.length > 0 &&
-                        listData.map((item, index) => {
+                {listData && listData.length > 0 ?
+                    <Swiper
+                        autoplay={{
+                            delay: 2500,
+                            disableOnInteraction: true,
+                        }}
+                        scrollbar={{ hide: true }}
+                        loop={true}
+                        navigation={true}
+                        modules={[Scrollbar, Navigation, Autoplay]}
+                    >
+                        {listData.map((item, index) => {
                             return (
-                                <SwiperSlide style={{
+                                <SwiperSlide key={index} style={{
                                     backgroundImage: `url("${item?.image}")`,
                                 }}>
-                                    <div className='information'>
-                                        <div className='name'>{item.name}</div>
+                                    <div className='information-showroom'>
+                                        <div className='name-project'>{item.name}</div>
 
                                         {showDataMap[index] &&
-                                            <div className='description' style={{ whiteSpace: "pre-line" }}>{item.description}</div>
+                                            <div className='description-project' style={{ whiteSpace: "pre-line" }}>{item.description}</div>
                                         }
 
                                         <div className='btn-show' onClick={() => toggleShowData(index)}>
@@ -96,12 +105,21 @@ const ShowroomSection = () => {
                                     </div>
                                 </SwiperSlide>
                             )
-                        })
-                    }
-                </Swiper>
+                        })}
+                    </Swiper>
+
+                    :
+
+                    <div className='loading-div'>
+                        <div className='loading-img'>Vui lòng chờ trong giây lát...</div>
+                        <div className='loading-info'></div>
+                    </div>
+                }
+
             </div>
         </div>
     )
 }
 
 export default ShowroomSection;
+
