@@ -1,0 +1,92 @@
+.showroom-section {
+    font-family: var(--font-lexend);
+    position   : relative;
+    height     : 100vh;
+
+    .main-title {
+        position      : absolute;
+        z-index       : 2;
+        padding-top   : 20px;
+        width         : 100%;
+        font-size     : 2em;
+        display       : flex;
+        flex-direction: column;
+        align-items   : center;
+
+        .title {
+            background-color: rgba(0, 0, 0, 0.5); // Nền đen mờ giúp chữ nổi bật
+            border-radius   : 5px;
+            padding         : 10px 20px;
+            color           : white;
+            font-weight     : 600;
+        }
+    }
+
+    .slider-container {
+        height: calc(100vh - 80px);
+
+        .swiper {
+            width : 100%;
+            height: 100%;
+
+            .swiper-slide {
+                display        : block;
+                background     : center no-repeat;
+                background-size: cover;
+                width          : "100%";
+                display        : flex;
+                justify-content: end;
+                align-items    : end;
+                padding        : 20px;
+
+                .information {
+                    border-radius   : 10px;
+                    background-color: white;
+                    padding         : 20px;
+                    width           : 30%;
+                    z-index         : 3;
+
+                    .name {
+                        font-size     : 1.5em;
+                        padding-bottom: 10px;
+                    }
+
+                    .description {
+                        font-size: 1em;
+                    }
+
+                    .btn-show {
+                        margin-top      : 10px;
+                        background-color: rgb(4, 92, 27);
+                        color           : white;
+                        width           : fit-content;
+                        padding         : 10px 20px;
+                        border-radius   : 8px;
+                        will-change     : transform;
+                        transition      : transform 0.3s ease-in-out, background-color 0.3s ease-in-out; // Thêm transition
+                        cursor          : pointer;
+
+                        &:hover {
+                            transform: scale(1.05);
+                        }
+
+                        &:active {
+                            transform: scale(0.9); // Khi click, thu nhỏ nhẹ để cảm giác tự nhiên hơn
+                        }
+                    }
+                }
+            }
+
+            .swiper-slide::before {
+                content   : "";
+                position  : absolute;
+                top       : 0;
+                left      : 0;
+                width     : 100%;
+                height    : 100%;
+                background: rgba(89, 85, 85, 0.211);
+                z-index   : 1;
+            }
+        }
+    }
+}

@@ -5,10 +5,11 @@
     padding-top     : 20px;
 
     .container {
-        display: flex;
+        display        : flex;
+        justify-content: space-around;
 
         .content-left {
-            width: 50%;
+            width: 25%;
 
             .footer-content {
                 padding    : 20px;
@@ -46,12 +47,33 @@
             }
         }
 
-        .content-right {
-            width: 50%;
+        .content-center {
+            width          : 50%;
+            display        : flex;
+            justify-content: center;
 
             .introduce {
                 .title-content {
-                    font-size: 1.5em;
+                    font-size: 1.2em;
+                }
+
+                .content {
+                    padding   : 20px 0;
+                    text-align: justify;
+
+                    .each-content {
+                        padding: 10px 0;
+                    }
+                }
+            }
+        }
+
+        .content-right {
+            width: 30%;
+
+            .introduce {
+                .title-content {
+                    font-size: 1.2em;
                 }
 
                 .content {

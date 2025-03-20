@@ -24,9 +24,47 @@
         gap    : 20px;
 
         .each-care {
-            height    : 400px;
-            width     : 25%;
-            text-align: center;
+            background-color: white;
+            padding         : 10px;
+            border          : none;
+            border-radius   : 5px;
+            height          : 400px;
+            width           : 25%;
+            display         : flex;
+            flex-direction  : column;
+
+            .care-image {
+                height: 200px;
+                width : 100%;
+
+                img {
+                    width : 100%;
+                    height: 200px;
+                }
+            }
+
+            .name {
+                padding    : 10px 0;
+                font-size  : 1.1em;
+                font-weight: 600;
+            }
+
+            .info {
+                height: 90px;
+            }
+
+            .btn-action {
+                flex           : 1;
+                display        : flex;
+                justify-content: center;
+
+                button {
+                    border-radius   : 5px;
+                    padding         : 8px 16px;
+                    background-color: aquamarine;
+                    border          : none;
+                }
+            }
         }
     }
 

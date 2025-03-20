@@ -140,7 +140,7 @@ const UpdateDiseaseModal = (props: any) => {
                         <Form.Group className="mb-3" controlId="exampleForm.ControlTextarea1">
                             <Form.Label>Thông tin liên quan</Form.Label>
                             <Form.Control
-                                onChange={(event) => handleOnChangeInput("content", event?.target.value)}
+                                onChange={(event) => handleOnChangeInput("description", event?.target.value)}
                                 value={dataUpdate?.description}
                                 as="textarea"
                                 rows={10} />
@@ -152,7 +152,7 @@ const UpdateDiseaseModal = (props: any) => {
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
                                     <Form.Label>Nguồn / Tác giả</Form.Label>
                                     <Form.Control
-                                        onChange={(event) => handleOnChangeInput("author", event?.target.value)}
+                                        onChange={(event) => handleOnChangeInput("cre", event?.target.value)}
                                         value={dataUpdate?.cre} />
                                 </Form.Group>
                             </Col>

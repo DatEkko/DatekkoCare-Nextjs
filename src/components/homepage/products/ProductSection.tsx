@@ -4,7 +4,7 @@ const ProductionSection = () => {
     return (
         <div className="product-section">
             <div className="main-title">
-                Sản Phẩm Y Tế
+                Sản Phẩm Nổi Bật
                 <div className='underline'></div>
             </div>
 

@@ -12,13 +12,13 @@ const AdminSite = () => {
                 defaultActiveKey="Organ"
                 className="mb-3"
             >
-                <Tab eventKey="Organ" title="Organ Article">
+                <Tab eventKey="Organ" title="Services">
                     <OrganArticle />
                 </Tab>
-                <Tab eventKey="Disease" title="Disease Article">
+                <Tab eventKey="Disease" title="Completed Projects">
                     <DiseaseArticle />
                 </Tab>
-                <Tab eventKey="Treatment" title="Treatment Article">
+                <Tab eventKey="Treatment" title="Handbooks">
                     <TreatmentArticle />
                 </Tab>
             </Tabs>

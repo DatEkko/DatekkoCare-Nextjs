@@ -9,13 +9,14 @@
         width: 55%;
 
         .main-title {
-            font-size  : 2.8em;
+            font-size  : 2em;
             font-weight: 600;
         }
 
         .sub-title {
-            font-size: 1.1em;
-            padding  : 10px 0;
+            font-size : 1.1em;
+            padding   : 10px 0;
+            text-align: justify;
         }
 
         .btn-action {
@@ -23,7 +24,7 @@
                 padding         : 10px;
                 border-radius   : 8px;
                 margin-top      : 10px;
-                background-color: red;
+                background-color: rgb(31, 132, 74);
                 color           : white;
                 border          : none;
                 font-weight     : 600;
@@ -32,18 +33,28 @@
     }
 
     .content-right {
-        width        : 45%;
-        border       : 4px solid black;
-        border-radius: 50%;
-        width        : 450px;
-        height       : 500px;
-        display      : flex;
-        overflow     : hidden;
+        width : 45%;
+        height: 500px;
 
         .image-body {
-            width : 100%;
-            height: 100%;
+            width      : 100%;
+            height     : 100%;
+            object-fit : contain;
+            animation  : bounce 2.5s infinite;
+            will-change: transform;
         }
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(10px);
+    }
+
+    50% {
+        transform: translateY(-10px);
     }
 }
 

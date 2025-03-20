@@ -1,10 +1,10 @@
 'use client'
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import FooterComponent from "@/components/footer/FooterComponent";
 import CareSection from "@/components/homepage/care/CareSection";
-import DiseasesSection from "@/components/homepage/diseases/DiseasesSection";
+import ShowroomSection from "@/components/homepage/showroom/ShowroomSection";
 import HeroPage from "@/components/homepage/heropage/HeroPage";
-import OrganSection from "@/components/homepage/organs/OrganSection";
+import ServiceSection from "@/components/homepage/services/ServiceSection";
 import ProductionSection from "@/components/homepage/products/ProductSection";
 import PerfectScrollBar from 'react-perfect-scrollbar';
 
@@ -19,16 +19,20 @@ export default function Home() {
   //   }
   // }, []);
 
-  return (
 
+  return (
     <div className="homepage" style={{ height: "100vh" }}>
       <PerfectScrollBar>
         <div className="container">
           <HeroPage />
-          <OrganSection />
-          <DiseasesSection />
-          <CareSection />
+          <ServiceSection />
+        </div>
+
+        <ShowroomSection />
+
+        <div className="container">
           <ProductionSection />
+          <CareSection />
         </div>
         <FooterComponent />
       </PerfectScrollBar>

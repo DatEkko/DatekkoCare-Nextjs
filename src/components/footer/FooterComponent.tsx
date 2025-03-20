@@ -31,14 +31,26 @@ const FooterComponent = () => {
                     </div>
                 </div>
 
+                <div className='content-center'>
+                    <div className='introduce'>
+                        <div className='title-content'>Dịch vụ của chúng tôi</div>
+                        <ul className='content'>
+                            <li className='each-content'>Cung cấp cây cảnh đa dạng, phù hợp với mọi không gian</li>
+                            <li className='each-content'>Thiết kế và thi công sân vườn theo yêu cầu</li>
+                            <li className='each-content'>Chăm sóc, cắt tỉa, bảo dưỡng cây xanh định kỳ</li>
+                            <li className='each-content'>Tư vấn phong thủy cây cảnh giúp thu hút tài lộc</li>
+                        </ul>
+                    </div>
+
+                </div>
+
                 <div className='content-right'>
                     <div className='introduce'>
                         <div className='title-content'>
                             Giới thiệu về website
                         </div>
                         <div className='content'>
-                            Trang web cung cấp thông tin về các cơ quan nội tạng, bệnh lý thường gặp, cách điều trị và chăm sóc sức khỏe. Chúng tôi cam kết mang đến kiến thức y khoa chính xác, giúp bạn bảo vệ sức khỏe tốt hơn mỗi ngày.
-                        </div>
+                            Chúng tôi chuyên cung cấp các loại cây cảnh phong phú, từ cây để bàn, cây nội thất đến cây sân vườn, bonsai nghệ thuật. Bên cạnh đó, chúng tôi còn cung cấp dịch vụ thiết kế, thi công và bảo dưỡng sân vườn chuyên nghiệp, giúp không gian sống của bạn luôn xanh mát và tràn đầy sức sống.                        </div>
                     </div>
 
                     <hr></hr>

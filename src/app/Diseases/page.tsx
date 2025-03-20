@@ -1,7 +1,8 @@
+
 const DiseasesComponent = () => {
     return (
         <div>
-            Đây là Bệnh
+            Đây là bệnh
         </div>
     )
 }

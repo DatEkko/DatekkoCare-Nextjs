@@ -1,10 +1,10 @@
-import './OrganSection.scss';
+import './ServiceSection.scss';
 import { getAllOrganArticle } from '@/app/action';
 import { useEffect, useState } from 'react';
 import Card from 'react-bootstrap/Card';
 import Placeholder from 'react-bootstrap/Placeholder';
 
-const OrganSection = () => {
+const ServiceSection = () => {
     const [listData, setListData] = useState([]);
 
     const fetchListData = async () => {
@@ -45,7 +45,7 @@ const OrganSection = () => {
     return (
         <div className="organ-section">
             <div className="main-title">
-                Các Cơ Quan Chính
+                Các Dịch Vụ Chính
                 <div className='underline'></div>
             </div>
 
@@ -99,4 +99,4 @@ const OrganSection = () => {
     )
 }
 
-export default OrganSection;
+export default ServiceSection;
