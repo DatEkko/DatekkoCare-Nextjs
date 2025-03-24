@@ -55,7 +55,7 @@ const handleUpdateArticleAction = async (data: any) => {
 const getAllDiseaseArticle = async (page?: number, limit?: number) => {
   if (page && limit) {
     const res = await fetch(URL + `/disease-read?page=${page}&limit=${limit}`, {
-      method: "GET",
+      method: "GET"
     });
 
     return await res.json();
@@ -153,11 +153,53 @@ const handleUpdateTreatmentArticleAction = async (data: any) => {
   return await res.json();
 }
 
+const getServiceByIdService = async (id: number) => {
+  const res = await fetch(URL + `/getServiceById/${id}`, {
+    method: "GET",
+  });
+
+  return await res.json();
+}
+
+const getAllCodeProjectService = async () => {
+  const res = await fetch(URL + `/allcode-project-read`, {
+    method: "GET",
+  });
+
+  return await res.json();
+}
+
+const getKoiProjectService = async () => {
+  const res = await fetch(URL + `/koi-read`, {
+    method: "GET",
+  });
+
+  return await res.json();
+}
+
+const getMaintainProjectService = async () => {
+  const res = await fetch(URL + `/maintain-read`, {
+    method: "GET",
+  });
+
+  return await res.json();
+}
+
+const getDesignProjectService = async () => {
+  const res = await fetch(URL + `/design-read`, {
+    method: "GET",
+  });
+
+  return await res.json();
+}
+
 export {
   getAllOrganArticle, handleCreateArticleAction,
   handleDeleteOrganArticle, handleUpdateArticleAction,
   getAllDiseaseArticle, handleCreateDiseaseArticleAction,
   handleDeleteDiseaseArticle, handleUpdateDiseaseArticleAction,
   getAllTreatmentArticle, handleCreateTreatmentAction,
-  handleDeleteTreatmentArticle, handleUpdateTreatmentArticleAction
+  handleDeleteTreatmentArticle, handleUpdateTreatmentArticleAction,
+  getServiceByIdService, getAllCodeProjectService, getKoiProjectService,
+  getMaintainProjectService, getDesignProjectService
 }

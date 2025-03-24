@@ -1,3 +1,4 @@
+'use client'
 import './CareSection.scss';
 import Card from 'react-bootstrap/Card';
 import Placeholder from 'react-bootstrap/Placeholder';
@@ -39,17 +40,6 @@ const CareSection = () => {
         return trimmedText + " ...";
     }
 
-    function base64ToImage(base64: any, mimeType = "image/png") {
-        const byteCharacters = atob(base64.split(",")[1]); // Loại bỏ prefix "data:image/png;base64,"
-        const byteNumbers = new Uint8Array(byteCharacters.length);
-
-        for (let i = 0; i < byteCharacters.length; i++) {
-            byteNumbers[i] = byteCharacters.charCodeAt(i);
-        }
-
-        const blob = new Blob([byteNumbers], { type: mimeType });
-        return URL.createObjectURL(blob); // Trả về URL có thể sử dụng trong <img>
-    }
     return (
         <div className="care-section">
             <div className="main-title">
@@ -63,7 +53,7 @@ const CareSection = () => {
                         return (
                             <div className='each-care' key={index}>
                                 <div className='care-image'>
-                                    <img src={item?.image ? base64ToImage(item?.image) : loadingImg.src} alt="" />
+                                    <img src={item.image ? item.image : loadingImg.src} alt="" />
                                 </div>
                                 <div className='name'>
                                     {item?.name}

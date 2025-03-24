@@ -15,9 +15,10 @@ import UpdateDiseaseModal from '@/modals/UpdateDiseaseModal';
 type DiseaseArticleType = {
     id: number;
     name: string;
+    type_project: string;
     description: string;
     cre: string;
-    Organ: any
+    Allcode: any
 };
 
 const DiseaseArticle = () => {
@@ -87,6 +88,7 @@ const DiseaseArticle = () => {
                     <thead>
                         <tr>
                             <th>ID</th>
+                            <th>Type Project</th>
                             <th>Name</th>
                             <th>Description</th>
                             <th>Credit</th>
@@ -99,6 +101,7 @@ const DiseaseArticle = () => {
                                 return (
                                     <tr key={item.id}>
                                         <td>{item.id}</td>
+                                        <td>{item.Allcode?.value}</td>
                                         <td>{item.name}</td>
                                         <td>{truncateText(item.description)}</td>
                                         <td>{item.cre}</td>

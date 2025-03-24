@@ -77,7 +77,7 @@ const CreateOrganArticleModal = (props: any) => {
                             {/* Ô nhập tên */}
                             <Col md={6}>
                                 <Form.Group controlId="exampleForm.ControlInput1">
-                                    <Form.Label>Tên Cơ Quan Nội Tạng</Form.Label>
+                                    <Form.Label>Tên Dịch Vụ</Form.Label>
                                     <Form.Control
                                         value={article.name}
                                         onChange={(event) => handleOnChangeInput("name", event.target.value)}

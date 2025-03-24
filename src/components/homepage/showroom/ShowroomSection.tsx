@@ -1,12 +1,11 @@
+'use client'
 import { useEffect, useRef, useState } from 'react';
 import './ShowroomSection.scss';
-import { getAllDiseaseArticle } from '@/app/action';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Scrollbar, Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 import 'swiper/css/navigation';
-import loadingImg from "./../../../assets/loading_image.jpg"
 
 type DiseasesArticle = {
     organ_id: string | number,
@@ -16,8 +15,7 @@ type DiseasesArticle = {
     cre: string
 }
 
-const ShowroomSection = () => {
-    const [listData, setListData] = useState<DiseasesArticle[]>([]);
+const ShowroomSection = ({ listDataShowroom }: { listDataShowroom: DiseasesArticle[] }) => {
     const [showDataMap, setShowDataMap] = useState<{ [key: number]: boolean }>({});
 
     const toggleShowData = (index: number) => {
@@ -27,44 +25,9 @@ const ShowroomSection = () => {
         }));
     };
 
-    const fetchDiseaseArticle = async () => {
-        let res = await getAllDiseaseArticle(1, 10);
-        if (res && res.EC === 0) {
-            setListData(res.DT.article)
-        }
-    }
-
-    useEffect(() => {
-        fetchDiseaseArticle()
-    }, [])
-
     useEffect(() => {
         setShowDataMap({}); // Reset khi vào lại trang chủ
     }, []);
-
-    const truncateText = (text: string, maxLength = 50) => {
-        if (text.length <= maxLength) return text;
-
-        let trimmedText = text.slice(0, maxLength);
-        // Nếu ký tự cuối không phải khoảng trắng, tìm vị trí khoảng trắng gần nhất trước đó
-        if (text[maxLength] !== ' ' && trimmedText.includes(' ')) {
-            trimmedText = trimmedText.slice(0, trimmedText.lastIndexOf(' '));
-        }
-
-        return trimmedText + " ...";
-    }
-
-    function base64ToImage(base64: any, mimeType = "image/png") {
-        const byteCharacters = atob(base64.split(",")[1]); // Loại bỏ prefix "data:image/png;base64,"
-        const byteNumbers = new Uint8Array(byteCharacters.length);
-
-        for (let i = 0; i < byteCharacters.length; i++) {
-            byteNumbers[i] = byteCharacters.charCodeAt(i);
-        }
-
-        const blob = new Blob([byteNumbers], { type: mimeType });
-        return URL.createObjectURL(blob); // Trả về URL có thể sử dụng trong <img>
-    }
 
     return (
         <div className="showroom-section">
@@ -75,7 +38,7 @@ const ShowroomSection = () => {
             </div>
 
             <div className='slider-container'>
-                {listData && listData.length > 0 ?
+                {listDataShowroom && listDataShowroom.length > 0 ?
                     <Swiper
                         autoplay={{
                             delay: 2500,
@@ -86,7 +49,7 @@ const ShowroomSection = () => {
                         navigation={true}
                         modules={[Scrollbar, Navigation, Autoplay]}
                     >
-                        {listData.map((item, index) => {
+                        {listDataShowroom.map((item, index) => {
                             return (
                                 <SwiperSlide key={index} style={{
                                     backgroundImage: `url("${item?.image}")`,

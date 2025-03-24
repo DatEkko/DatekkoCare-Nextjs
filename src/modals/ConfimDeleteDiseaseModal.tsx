@@ -31,7 +31,7 @@ const ConfirmDeleteDiseaseModal = (props: any) => {
                 </Modal.Header>
 
                 <Modal.Body>
-                    Bạn có muốn chắc xóa bài viết về bệnh <b>{dataDelete?.name}</b>?
+                    Bạn có muốn chắc xóa bài viết <b>{dataDelete?.name}</b>?
                 </Modal.Body>
 
                 <Modal.Footer>

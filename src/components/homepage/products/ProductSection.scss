@@ -2,10 +2,10 @@
     font-family   : var(--font-lexend);
     display       : flex;
     flex-direction: column;
-    min-height    : 100vh;
+    min-height    : calc(100vh - 80px);
 
     .main-title {
-        padding-top   : 20px;
+        padding-top   : 40px;
         width         : 100%;
         font-size     : 2em;
         display       : flex;
@@ -29,7 +29,7 @@
 
         .each-product {
             border    : 1px solid black;
-            height    : 200px;
+            height    : 30vh;
             width     : 24%;
             text-align: center;
         }

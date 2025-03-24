@@ -3,13 +3,14 @@ import Modal from 'react-bootstrap/Modal';
 import { Button } from 'react-bootstrap';
 import { Form, Row, Col } from "react-bootstrap";
 import _ from 'lodash';
-import { handleUpdateArticleAction, handleUpdateDiseaseArticleAction } from '@/app/action';
+import { handleUpdateArticleAction, handleUpdateDiseaseArticleAction, getAllCodeProjectService } from '@/app/action';
 import { toast } from 'react-toastify';
 import { getAllOrganArticle } from '@/app/action';
 
 const UpdateDiseaseModal = (props: any) => {
     const { show, setShow, getDataDiseaseArticle, dataUpdate, setDataUpdate } = props;
-
+    const [dataSelect, setDataSelect] = useState([]);
+    const [allCode, setAllCode] = useState([]);
 
     const handleClose = () => setShow(false);
 
@@ -40,11 +41,36 @@ const UpdateDiseaseModal = (props: any) => {
         const selectedId = event.target.value;
         setDataUpdate((prev: any) => ({
             ...prev,
-            organ_id: selectedId,
+            type_project: selectedId,
         }));
     };
 
+    const fetchAllCode = async () => {
+        const res = await getAllCodeProjectService();
+        if (res && res.EC === 0) {
+            setAllCode(res.DT)
+        }
+    }
 
+    useEffect(() => {
+        fetchAllCode();
+    }, [])
+
+    const buildDataSelect = () => {
+        if (allCode && allCode.length > 0) {
+            const data: any = allCode.map((item: any) => ({
+                key: item.value,
+                value: item.key_code,
+            }));
+            setDataSelect(data);
+        }
+    };
+
+    useEffect(() => {
+        if (allCode.length > 0) {
+            buildDataSelect();
+        }
+    }, [allCode]);
 
     const handleSubmitUpdate = async () => {
         const res = await handleUpdateDiseaseArticleAction(dataUpdate);
@@ -76,11 +102,26 @@ const UpdateDiseaseModal = (props: any) => {
                             {/* Ô nhập tên */}
                             <Col md={6}>
                                 <Form.Group controlId="exampleForm.ControlInput1">
-                                    <Form.Label>Tên Bệnh Lý</Form.Label>
+                                    <Form.Label>Tên Công Trình</Form.Label>
                                     <Form.Control
                                         value={dataUpdate?.name}
                                         onChange={(event) => handleOnChangeInput("name", event.target.value)}
                                     />
+                                </Form.Group>
+                            </Col>
+
+                            <Col md={6}>
+                                <Form.Group controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Loại Công Trình</Form.Label>
+                                    <Form.Select value={dataUpdate?.type_project} onChange={(event) => handleSelectChange(event)}>
+                                        {dataSelect && dataSelect.length > 0 &&
+                                            dataSelect.map((item: any) => {
+                                                return (
+                                                    <option key={item.value} value={item.value}>{item.key}</option>
+                                                )
+                                            })
+                                        }
+                                    </Form.Select>
                                 </Form.Group>
                             </Col>
                         </Row>

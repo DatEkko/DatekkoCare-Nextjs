@@ -1,16 +1,14 @@
-'use client'
 import { useEffect, useRef } from "react";
 import FooterComponent from "@/components/footer/FooterComponent";
 import CareSection from "@/components/homepage/care/CareSection";
-import ShowroomSection from "@/components/homepage/showroom/ShowroomSection";
 import HeroPage from "@/components/homepage/heropage/HeroPage";
-import ServiceSection from "@/components/homepage/services/ServiceSection";
 import ProductionSection from "@/components/homepage/products/ProductSection";
-import PerfectScrollBar from 'react-perfect-scrollbar';
 import ContactComponent from "@/components/homepage/contact/ContactComponent";
+import ServiceComponent from "@/components/services/ServiceComponent";
+import ShowroomSever from "@/components/homepage/showroom/ShowroomServer";
+import PerfectScrollContainer from "@/components/scrollbar/PerfectScrollBarContainer";
 
 export default function Home() {
-
   // useEffect(() => {
   //   if ("serviceWorker" in navigator) {
   //     navigator.serviceWorker
@@ -20,24 +18,19 @@ export default function Home() {
   //   }
   // }, []);
 
-
   return (
     <div className="homepage" style={{ height: "100vh", fontFamily: "var(--font-lexend)" }}>
-      <PerfectScrollBar>
+      <PerfectScrollContainer>
+        <ShowroomSever />
         <div className="container">
           <HeroPage />
-          <ServiceSection />
-        </div>
-
-        <ShowroomSection />
-
-        <div className="container">
+          <ServiceComponent />
           <ProductionSection />
           <CareSection />
           <ContactComponent />
         </div>
         <FooterComponent />
-      </PerfectScrollBar>
+      </PerfectScrollContainer>
     </div>
   );
 }

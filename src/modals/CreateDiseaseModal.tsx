@@ -3,12 +3,13 @@ import Modal from 'react-bootstrap/Modal';
 import { Button } from 'react-bootstrap';
 import { Form, Row, Col } from "react-bootstrap";
 import _ from 'lodash';
-import { handleCreateDiseaseArticleAction } from '@/app/action';
+import { getAllCodeProjectService, handleCreateDiseaseArticleAction } from '@/app/action';
 import { toast } from 'react-toastify';
 import { getAllOrganArticle } from '@/app/action';
 
 type DiseaseArticle = {
     name: string,
+    type_project: string,
     content: string,
     author: string,
     image?: any
@@ -16,9 +17,12 @@ type DiseaseArticle = {
 
 const CreateDiseaseArticleModal = (props: any) => {
     const { show, setShow, getDataDiseaseArticle } = props;
+    const [allCode, setAllCode] = useState([]);
+    const [dataSelect, setDataSelect] = useState([]);
     const handleClose = () => setShow(false);
     const defaultArticle = {
         name: '',
+        type_project: '1',
         content: '',
         author: '',
         image: null
@@ -53,9 +57,36 @@ const CreateDiseaseArticleModal = (props: any) => {
         const selectedId = event.target.value;
         setArticle(prev => ({
             ...prev,
-            organ_id: selectedId,
+            type_project: selectedId,
         }));
     };
+
+    const fetchAllCode = async () => {
+        const res = await getAllCodeProjectService();
+        if (res && res.EC === 0) {
+            setAllCode(res.DT)
+        }
+    }
+
+    useEffect(() => {
+        fetchAllCode();
+    }, [])
+
+    const buildDataSelect = () => {
+        if (allCode && allCode.length > 0) {
+            const data: any = allCode.map((item: any) => ({
+                key: item.value,
+                value: item.key_code,
+            }));
+            setDataSelect(data);
+        }
+    };
+
+    useEffect(() => {
+        if (allCode.length > 0) {
+            buildDataSelect();
+        }
+    }, [allCode]);
 
     const handleSubmitCreate = async () => {
         const res = await handleCreateDiseaseArticleAction(article);
@@ -87,11 +118,26 @@ const CreateDiseaseArticleModal = (props: any) => {
                             {/* Ô nhập tên */}
                             <Col md={6}>
                                 <Form.Group controlId="exampleForm.ControlInput1">
-                                    <Form.Label>Tên Bệnh Lý</Form.Label>
+                                    <Form.Label>Tên Công Trình</Form.Label>
                                     <Form.Control
                                         value={article.name}
                                         onChange={(event) => handleOnChangeInput("name", event.target.value)}
                                     />
+                                </Form.Group>
+                            </Col>
+
+                            <Col md={6}>
+                                <Form.Group controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Loại Công Trình</Form.Label>
+                                    <Form.Select onChange={(event) => handleSelectChange(event)}>
+                                        {dataSelect && dataSelect.length > 0 &&
+                                            dataSelect.map((item: any) => {
+                                                return (
+                                                    <option key={item.value} value={item.value}>{item.key}</option>
+                                                )
+                                            })
+                                        }
+                                    </Form.Select>
                                 </Form.Group>
                             </Col>
                         </Row>
