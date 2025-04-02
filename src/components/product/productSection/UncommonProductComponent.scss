@@ -1,0 +1,92 @@
+.uncommon-product-component-container {
+    background-color: white;
+
+    .container {
+        padding: unset;
+
+        .item-category-product {
+            padding: 40px 0;
+
+            .title {
+                display        : flex;
+                align-items    : center;
+                justify-content: space-between;
+
+                .name {
+                    font-size  : 2em;
+                    font-weight: 800;
+                }
+
+                .more {
+                    user-select: none;
+                    cursor     : pointer;
+                    display    : flex;
+                    align-items: center;
+
+                    .icon {
+                        font-size: 25px;
+                    }
+                }
+            }
+
+            .list-product {
+                display        : flex;
+                justify-content: space-between;
+                padding        : 10px 0;
+
+                .each-product {
+                    width           : 23%;
+                    height          : 400px;
+                    border-radius   : 15px;
+                    background-color: white;
+                    box-shadow      : 0 4px 8px rgba(0, 0, 0, 0.5);
+
+                    .image {
+                        height: 70%;
+
+                        img {
+                            border-radius: 15px;
+                            width        : 100%;
+                            height       : 100%;
+                            object-fit   : cover;
+                        }
+                    }
+
+                    .info {
+                        padding: 10px;
+
+                        .name {
+                            font-size  : 1.25em;
+                            font-weight: 600;
+                        }
+
+                        .sale {
+                            margin-top     : 10px;
+                            display        : flex;
+                            justify-content: space-between;
+                            align-items    : center;
+
+                            .price {
+                                font-size: 1.1em;
+                            }
+
+                            .buy {
+                                button {
+                                    border          : none;
+                                    outline         : none;
+                                    background-color: rgba(0, 150, 20, 0.807);
+                                    color           : white;
+                                    padding         : 5px 20px;
+                                    border-radius   : 8px;
+                                    font-size       : 1.5em;
+                                    box-sizing      : border-box;
+                                }
+                            }
+                        }
+                    }
+
+                }
+            }
+        }
+    }
+}
