@@ -1,0 +1,88 @@
+.banner-product-component-container {
+    height          : 400px;
+    width           : 100%;
+    background-color: #a6b7a4;
+
+    .container {
+        height         : 400px;
+        display        : flex;
+        align-items    : center;
+        justify-content: space-between;
+
+        .card-product {
+            padding         : 40px 20px;
+            height          : 300px;
+            width           : 32%;
+            background-color: white;
+            border-radius   : 8px;
+            display         : flex;
+            gap             : 40px;
+
+            .text-product {
+                width          : 50%;
+                display        : flex;
+                flex-direction : column;
+                justify-content: center;
+
+                .title {
+                    font-weight: 600;
+                    font-size  : 2em;
+                }
+
+                .btn-product {
+                    margin-top      : 20px;
+                    background-color: rgba(255, 0, 0, 0.877);
+                    width           : fit-content;
+                    border-radius   : 12px;
+
+                    .btn {
+                        color: rgb(255, 255, 255);
+                    }
+
+                }
+            }
+
+            .image-product {
+                width: 50%;
+
+                .img-product {
+                    border-radius: 10px;
+                    width        : 100%;
+                    height       : 100%;
+                }
+            }
+        }
+
+        .content-right {
+            width           : 32%;
+            display         : flex;
+            flex-direction  : column;
+            padding         : 20px;
+            height          : 300px;
+            background-color: white;
+            border-radius   : 8px;
+
+            .image-product {
+                width : 100%;
+                height: 70%;
+
+                .img-product {
+                    border-radius: 10px;
+                    width        : 100%;
+                    height       : 100%;
+                }
+            }
+
+            .text-product {
+                padding-top: 10px;
+                text-align : center;
+
+                .title {
+                    font-size  : 2em;
+                    font-weight: 800;
+                }
+            }
+        }
+    }
+
+}

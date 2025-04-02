@@ -161,14 +161,6 @@ const getServiceByIdService = async (id: number) => {
   return await res.json();
 }
 
-const getAllCodeProjectService = async () => {
-  const res = await fetch(URL + `/allcode-project-read`, {
-    method: "GET",
-  });
-
-  return await res.json();
-}
-
 const getKoiProjectService = async () => {
   const res = await fetch(URL + `/koi-read`, {
     method: "GET",
@@ -193,6 +185,80 @@ const getDesignProjectService = async () => {
   return await res.json();
 }
 
+const getProductService = async (page?: number, limit?: number) => {
+  if (page && limit) {
+    const res = await fetch(URL + `/product-read?page=${page}&limit=${limit}`, {
+      method: "GET",
+    });
+
+    return await res.json();
+  }
+  const res = await fetch(URL + `/product-read`, {
+    method: "GET",
+  });
+
+  return await res.json();
+}
+
+const getAllCodeProjectService = async () => {
+  const res = await fetch(URL + `/allcode-project-read`, {
+    method: "GET",
+  });
+
+  return await res.json();
+}
+
+const getAllCodeProductService = async () => {
+  const res = await fetch(URL + `/allcode-product-read`, {
+    method: "GET",
+  });
+
+  return await res.json();
+}
+
+const getAllCodeConditionService = async () => {
+  const res = await fetch(URL + `/allcode-condition-read`, {
+    method: "GET",
+  });
+
+  return await res.json();
+}
+
+const handleCreateProductAction = async (data: any) => {
+  const res = await fetch(URL + "/product-create", {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+
+  return await res.json();
+}
+
+const handleDeleteProductArticle = async (data: any) => {
+  const res = await fetch(URL + "/product-delete", {
+    method: "DELETE",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+
+  return await res.json();
+}
+
+const handleUpdateProductAction = async (data: any) => {
+  const res = await fetch(URL + "/product-update", {
+    method: "PUT",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  })
+  return await res.json();
+}
+
 export {
   getAllOrganArticle, handleCreateArticleAction,
   handleDeleteOrganArticle, handleUpdateArticleAction,
@@ -201,5 +267,7 @@ export {
   getAllTreatmentArticle, handleCreateTreatmentAction,
   handleDeleteTreatmentArticle, handleUpdateTreatmentArticleAction,
   getServiceByIdService, getAllCodeProjectService, getKoiProjectService,
-  getMaintainProjectService, getDesignProjectService
+  getMaintainProjectService, getDesignProjectService, getProductService,
+  getAllCodeProductService, getAllCodeConditionService, handleCreateProductAction,
+  handleDeleteProductArticle, handleUpdateProductAction
 }

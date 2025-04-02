@@ -9,7 +9,6 @@ import { toast } from 'react-toastify';
 const UpdateTreatmentModal = (props: any) => {
     const { show, setShow, getDataTreatmentArticle, dataUpdate, setDataUpdate } = props;
 
-
     const handleClose = () => setShow(false);
 
     const handleOnChangeInput = (type: any, value: string) => {
@@ -35,16 +34,6 @@ const UpdateTreatmentModal = (props: any) => {
         }
     };
 
-    const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
-        const selectedId = event.target.value;
-        setDataUpdate((prev: any) => ({
-            ...prev,
-            organ_id: selectedId,
-        }));
-    };
-
-
-
     const handleSubmitUpdate = async () => {
         const res = await handleUpdateTreatmentArticleAction(dataUpdate);
         if (res && res.EC === 0) {
@@ -54,7 +43,6 @@ const UpdateTreatmentModal = (props: any) => {
         } else {
             console.log(res.EM)
         }
-        console.log(dataUpdate)
     }
 
     return (
@@ -66,7 +54,7 @@ const UpdateTreatmentModal = (props: any) => {
                 backdrop='static'
             >
                 <Modal.Header closeButton>
-                    <Modal.Title>Thêm mới bài viết</Modal.Title>
+                    <Modal.Title>Chỉnh sửa bài viết</Modal.Title>
                 </Modal.Header>
 
                 <Modal.Body>

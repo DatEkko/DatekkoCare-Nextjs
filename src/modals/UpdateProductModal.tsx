@@ -1,22 +1,34 @@
-import { useState, useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import { Button } from 'react-bootstrap';
 import { Form, Row, Col } from "react-bootstrap";
 import _ from 'lodash';
-import { handleUpdateDiseaseArticleAction, getAllCodeProjectService } from '@/app/action';
+import { getAllCodeProductService, getAllCodeConditionService, handleCreateProductAction, handleUpdateProductAction } from '@/app/action';
 import { toast } from 'react-toastify';
 
-const UpdateDiseaseModal = (props: any) => {
-    const { show, setShow, getDataDiseaseArticle, dataUpdate, setDataUpdate } = props;
-    const [dataSelect, setDataSelect] = useState([]);
-    const [allCode, setAllCode] = useState([]);
+type Product = {
+    name: string,
+    type_product: string,
+    type_condition: string,
+    description: string,
+    image?: any,
+    price: any
+}
+
+const UpdateProductModal = (props: any) => {
+    const { show, setShow, getDataProduct, dataUpdate, setDataUpdate } = props;
+    const [typeProduct, setTypeProduct] = useState([]);
+    const [typeConditon, setTypeCondition] = useState([]);
+
+    const [dataSelectProduct, setDataSelectProduct] = useState([]);
+    const [dataSelectCondition, setDataSelectCondition] = useState([]);
 
     const handleClose = () => setShow(false);
 
-    const handleOnChangeInput = (type: any, value: string) => {
-        const _dataUpdate = _.cloneDeep(dataUpdate);
-        _dataUpdate[type] = value;
-        setDataUpdate(_dataUpdate)
+    const handleOnChangeInput = (type: keyof Product, value: string) => {
+        const _product = _.cloneDeep(dataUpdate);
+        _product[type] = value;
+        setDataUpdate(_product)
     }
 
     const handleImageUpload = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -36,51 +48,66 @@ const UpdateDiseaseModal = (props: any) => {
         }
     };
 
-    const handleSelectChange = (event: React.ChangeEvent<HTMLSelectElement>) => {
+    const handleSelectChange = (type: string, event: React.ChangeEvent<HTMLSelectElement>) => {
         const selectedId = event.target.value;
         setDataUpdate((prev: any) => ({
             ...prev,
-            type_project: selectedId,
+            [type]: selectedId,
         }));
     };
 
-    const fetchAllCode = async () => {
-        const res = await getAllCodeProjectService();
+    const fetchAllCodeTypeProduct = async () => {
+        const res = await getAllCodeProductService();
         if (res && res.EC === 0) {
-            setAllCode(res.DT)
+            setTypeProduct(res.DT)
+        }
+    }
+
+    const fetchAllCodeTypeCondition = async () => {
+        const res = await getAllCodeConditionService();
+        if (res && res.EC === 0) {
+            setTypeCondition(res.DT)
         }
     }
 
     useEffect(() => {
-        fetchAllCode();
+        fetchAllCodeTypeProduct();
+        fetchAllCodeTypeCondition();
     }, [])
 
     const buildDataSelect = () => {
-        if (allCode && allCode.length > 0) {
-            const data: any = allCode.map((item: any) => ({
+        if (typeProduct && typeProduct.length > 0) {
+            const data: any = typeProduct.map((item: any) => ({
                 key: item.value,
                 value: item.key_code,
             }));
-            setDataSelect(data);
+            setDataSelectProduct(data);
+        }
+
+        if (typeConditon && typeConditon.length > 0) {
+            const data: any = typeConditon.map((item: any) => ({
+                key: item.value,
+                value: item.key_code,
+            }));
+            setDataSelectCondition(data);
         }
     };
 
     useEffect(() => {
-        if (allCode.length > 0) {
+        if (typeConditon.length > 0) {
             buildDataSelect();
         }
-    }, [allCode]);
+    }, [typeConditon]);
 
     const handleSubmitUpdate = async () => {
-        const res = await handleUpdateDiseaseArticleAction(dataUpdate);
+        const res = await handleUpdateProductAction(dataUpdate);
         if (res && res.EC === 0) {
             handleClose();
-            getDataDiseaseArticle();
+            getDataProduct();
             toast.success(res.EM)
         } else {
             console.log(res.EM)
         }
-        console.log(dataUpdate)
     }
 
     return (
@@ -98,23 +125,39 @@ const UpdateDiseaseModal = (props: any) => {
                 <Modal.Body>
                     <Form>
                         <Row className="mb-3">
-                            {/* Ô nhập tên */}
-                            <Col md={6}>
+                            <Col md={12}>
                                 <Form.Group controlId="exampleForm.ControlInput1">
-                                    <Form.Label>Tên Công Trình</Form.Label>
+                                    <Form.Label>Tên Sản Phẩm</Form.Label>
                                     <Form.Control
                                         value={dataUpdate?.name}
                                         onChange={(event) => handleOnChangeInput("name", event.target.value)}
                                     />
                                 </Form.Group>
                             </Col>
+                        </Row>
+
+                        <Row className="mb-3">
+                            <Col md={6}>
+                                <Form.Group controlId="exampleForm.ControlInput1">
+                                    <Form.Label>Loại sản phẩm</Form.Label>
+                                    <Form.Select value={dataUpdate?.type_product} onChange={(event) => handleSelectChange("type_product", event)}>
+                                        {dataSelectProduct && dataSelectProduct.length > 0 &&
+                                            dataSelectProduct.map((item: any) => {
+                                                return (
+                                                    <option key={item.value} value={item.value}>{item.key}</option>
+                                                )
+                                            })
+                                        }
+                                    </Form.Select>
+                                </Form.Group>
+                            </Col>
 
                             <Col md={6}>
                                 <Form.Group controlId="exampleForm.ControlInput1">
-                                    <Form.Label>Loại Công Trình</Form.Label>
-                                    <Form.Select value={dataUpdate?.type_project} onChange={(event) => handleSelectChange(event)}>
-                                        {dataSelect && dataSelect.length > 0 &&
-                                            dataSelect.map((item: any) => {
+                                    <Form.Label>Điều kiện sống</Form.Label>
+                                    <Form.Select value={dataUpdate?.type_condition} onChange={(event) => handleSelectChange("type_condition", event)}>
+                                        {dataSelectCondition && dataSelectCondition.length > 0 &&
+                                            dataSelectCondition.map((item: any) => {
                                                 return (
                                                     <option key={item.value} value={item.value}>{item.key}</option>
                                                 )
@@ -130,17 +173,17 @@ const UpdateDiseaseModal = (props: any) => {
                                 onChange={(event) => handleOnChangeInput("description", event?.target.value)}
                                 value={dataUpdate?.description}
                                 as="textarea"
-                                rows={10} />
+                                rows={5} />
                         </Form.Group>
 
                         <Row className="mb-3">
-                            {/* Ô nhập tên */}
+                            {/* Ô nhập số tiền */}
                             <Col md={6}>
                                 <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-                                    <Form.Label>Nguồn / Tác giả</Form.Label>
+                                    <Form.Label>Giá tiền</Form.Label>
                                     <Form.Control
-                                        onChange={(event) => handleOnChangeInput("cre", event?.target.value)}
-                                        value={dataUpdate?.cre} />
+                                        onChange={(event) => handleOnChangeInput("price", event?.target.value)}
+                                        value={dataUpdate?.price} />
                                 </Form.Group>
                             </Col>
 
@@ -169,4 +212,4 @@ const UpdateDiseaseModal = (props: any) => {
     );
 }
 
-export default UpdateDiseaseModal;
+export default UpdateProductModal;
