@@ -8,20 +8,26 @@ import { GiBonsaiTree } from "react-icons/gi";
 import { RiTreeFill } from "react-icons/ri";
 import { PiFlowerFill } from "react-icons/pi";
 import { GiFlowerPot, GiVineLeaf, GiPalmTree, GiFertilizerBag } from "react-icons/gi";
+import { useRouter } from "next/navigation";
 
 const CategoryComponent = () => {
+    const router = useRouter();
     const categories = [
-        { icon: <FaHouseCircleCheck />, name: "Cây Trong Nhà" },
-        { icon: <MdYard />, name: "Cây Ngoài Vườn" },
-        { icon: <FaTree />, name: "Cây Công Trình" },
-        { icon: <PiFlowerFill />, name: "Cây Mai Vàng" },
-        { icon: <RiTreeFill />, name: "Cây Lộc Vừng" },
-        { icon: <GiBonsaiTree />, name: "Cây Bon Sai" },
-        { icon: <GiFlowerPot />, name: "Cây Thân Thảo" },
-        { icon: <GiVineLeaf />, name: "Cây Thân Leo" },
-        { icon: <GiPalmTree />, name: "Cây Bụi Kiểng" },
-        { icon: <GiFertilizerBag />, name: "Phân Bón Cây" }
+        { icon: <FaHouseCircleCheck />, name: "Cây Trong Nhà", id: "4" },
+        { icon: <MdYard />, name: "Cây Ngoài Vườn", id: "5" },
+        { icon: <FaTree />, name: "Cây Công Trình", id: "8" },
+        { icon: <PiFlowerFill />, name: "Cây Mai Vàng", id: "6" },
+        { icon: <RiTreeFill />, name: "Cây Lộc Vừng", id: "7" },
+        { icon: <GiBonsaiTree />, name: "Cây Bon Sai", id: "9" },
+        { icon: <GiFlowerPot />, name: "Cây Thân Thảo", id: "10" },
+        { icon: <GiVineLeaf />, name: "Cây Thân Leo", id: "11" },
+        { icon: <GiPalmTree />, name: "Cây Bụi Kiểng", id: "12" },
+        { icon: <GiFertilizerBag />, name: "Phân Bón Cây", id: "13" }
     ];
+
+    const handleRedirectPage = (id: string) => {
+        router.push(`/Products/category/${id}`)
+    }
 
     return (
         <div className="category-component-container">
@@ -35,7 +41,7 @@ const CategoryComponent = () => {
                         <div
                             key={index}
                             className="item-category"
-
+                            onClick={() => handleRedirectPage(category.id)}
                         >
                             {category.icon && <span className="category-icon">{category.icon}</span>} {category.name}
                         </div>

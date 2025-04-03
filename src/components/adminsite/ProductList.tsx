@@ -80,8 +80,8 @@ const ProductList = () => {
                             <th>ID</th>
                             <th>Name</th>
                             <th>Description</th>
-                            <th>Type</th>
                             <th>Condition</th>
+                            <th>Type</th>
                             <th>Price</th>
                             <th>Actions</th>
                         </tr>

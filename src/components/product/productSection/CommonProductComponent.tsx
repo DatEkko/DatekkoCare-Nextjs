@@ -10,8 +10,10 @@ import discount_2 from "@/assets/product/discount-2.png"
 import cay_trang_tri from "@/assets/product/cay-trang-tri.jpg";
 import bonsai from "@/assets/product/bonsai.jpg";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 
 const CommonProductComponent = () => {
+    const router = useRouter();
     const initialSeconds = 1200;
     const [totalSeconds, setTotalSeconds] = useState(initialSeconds);
     const [isRunning, setIsRunning] = useState(true);
@@ -41,6 +43,10 @@ const CommonProductComponent = () => {
     const minuteOnes = minutes % 10;
     const secondTens = Math.floor(seconds / 10);
     const secondOnes = seconds % 10;
+
+    const handleRedirectPage = (id: string) => {
+        router.push(`/Products/category/${id}`)
+    }
 
     return (
         <div className="product-component-container">
@@ -104,7 +110,7 @@ const CommonProductComponent = () => {
                                 <div className="left">
                                     <PiPottedPlantFill className="icon-title" /> Cây Để Bàn
                                 </div>
-                                <div className="right">
+                                <div className="right" onClick={() => handleRedirectPage("4")}>
                                     Xem thêm  <MdOutlineKeyboardArrowRight className="icon-title" />
                                 </div>
                             </div>
@@ -213,7 +219,7 @@ const CommonProductComponent = () => {
                                 <div className="left">
                                     <GiBonsaiTree className="icon-title" /> Cây BonSai
                                 </div>
-                                <div className="right">
+                                <div className="right" onClick={() => handleRedirectPage("9")}>
                                     Xem thêm  <MdOutlineKeyboardArrowRight className="icon-title" />
                                 </div>
                             </div>

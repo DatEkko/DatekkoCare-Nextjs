@@ -16,6 +16,7 @@ const ProductPage = () => {
                 <CategoryComponent />
                 <CommonProductComponent />
                 <UncommonProductComponent />
+                <CategoryComponent />
                 <ProductAdvertiseComponent />
                 <FooterComponent />
             </PerfectScrollContainer>

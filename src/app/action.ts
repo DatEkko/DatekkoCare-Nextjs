@@ -208,6 +208,7 @@ const getAllCodeProjectService = async () => {
   return await res.json();
 }
 
+////////////////////////Product API
 const getAllCodeProductService = async () => {
   const res = await fetch(URL + `/allcode-product-read`, {
     method: "GET",
@@ -259,6 +260,34 @@ const handleUpdateProductAction = async (data: any) => {
   return await res.json();
 }
 
+const getProductListByIdAction = async (id: string) => {
+  const res = await fetch(URL + `/product-read/${id}`, {
+    method: "GET",
+  });
+
+  return await res.json();
+}
+
+const getProductByIdAction = async (id: string) => {
+  const res = await fetch(URL + `/detail-product/${id}`, {
+    method: "GET",
+  });
+
+  return await res.json();
+}
+
+const getReleatedProductAction = async (data: any) => {
+  const res = await fetch(URL + `/related-product`, {
+    method: "POST",
+    body: JSON.stringify(data),
+    headers: {
+      "Content-Type": "application/json"
+    }
+  });
+
+  return await res.json();
+}
+
 export {
   getAllOrganArticle, handleCreateArticleAction,
   handleDeleteOrganArticle, handleUpdateArticleAction,
@@ -269,5 +298,6 @@ export {
   getServiceByIdService, getAllCodeProjectService, getKoiProjectService,
   getMaintainProjectService, getDesignProjectService, getProductService,
   getAllCodeProductService, getAllCodeConditionService, handleCreateProductAction,
-  handleDeleteProductArticle, handleUpdateProductAction
+  handleDeleteProductArticle, handleUpdateProductAction, getProductListByIdAction,
+  getProductByIdAction, getReleatedProductAction
 }
