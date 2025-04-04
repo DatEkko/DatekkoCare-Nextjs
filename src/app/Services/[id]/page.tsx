@@ -56,11 +56,10 @@ const ServicePage = async ({ params }: Props) => {
 
     let service: Service = {};
     let allService: Article[] = [];
-    let allProject: any[] = []; // Có thể định nghĩa type cụ thể hơn nếu biết cấu trúc
+    let allProject: any[] = [];
 
     if (!id) return notFound();
 
-    // Lấy chi tiết dịch vụ
     try {
         const res: ApiResponse<Service> = await getServiceByIdService(+id);
         if (res && res.EC === 0) {
@@ -70,7 +69,6 @@ const ServicePage = async ({ params }: Props) => {
         console.error("Lỗi khi lấy service:", error instanceof Error ? error.message : error);
     }
 
-    // Lấy tất cả dịch vụ
     try {
         const res2: ApiResponse<Article[]> = await getAllOrganArticle();
         if (res2 && res2.EC === 0) {
@@ -106,10 +104,10 @@ const ServicePage = async ({ params }: Props) => {
         }
     } catch (error) {
         console.error("Lỗi khi lấy allProject:", error instanceof Error ? error.message : error);
-        allProject = []; // Fallback
+        allProject = [];
     }
 
-    // Kiểm tra service
+
     if (!Object.keys(service).length) return notFound();
 
     return (

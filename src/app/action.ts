@@ -1,21 +1,21 @@
 "use server"; // Chạy trên server
 
-const URL = "http://localhost:6677/api/v1"
+const URL = "http://localhost:6677/api/v1";
+const API_URL = "http://localhost:6677/api/v1";
 
 const getAllOrganArticle = async (page?: number, limit?: number) => {
-  if (page && limit) {
-    const res = await fetch(URL + `/read?page=${page}&limit=${limit}`, {
-      method: "GET",
-    });
-
+  const url = page && limit
+    ? `${API_URL}/read?page=${page}&limit=${limit}`
+    : `${API_URL}/read`;
+  try {
+    const res = await fetch(url, { method: "GET" });
+    if (!res.ok) throw new Error("API không phản hồi");
     return await res.json();
+  } catch (error) {
+    console.error("Lỗi trong getAllOrganArticle:", error instanceof Error ? error.message : error);
+    return { EC: -1, DT: [] }; // Fallback
   }
-  const res = await fetch(URL + `/read`, {
-    method: "GET",
-  });
-
-  return await res.json();
-}
+};
 
 const handleCreateArticleAction = async (data: any) => {
   const res = await fetch(URL + "/create", {
@@ -53,19 +53,18 @@ const handleUpdateArticleAction = async (data: any) => {
 }
 
 const getAllDiseaseArticle = async (page?: number, limit?: number) => {
-  if (page && limit) {
-    const res = await fetch(URL + `/disease-read?page=${page}&limit=${limit}`, {
-      method: "GET"
-    });
-
+  const url = page && limit
+    ? `${API_URL}/disease-read?page=${page}&limit=${limit}`
+    : `${API_URL}/disease-read`;
+  try {
+    const res = await fetch(url, { method: "GET" });
+    if (!res.ok) throw new Error("API không phản hồi");
     return await res.json();
+  } catch (error) {
+    console.error("Lỗi trong getAllDiseaseArticle:", error instanceof Error ? error.message : error);
+    return { EC: -1, DT: { article: [] } }; // Fallback khi lỗi
   }
-  const res = await fetch(URL + `/disease-read`, {
-    method: "GET",
-  });
-
-  return await res.json();
-}
+};
 
 const handleCreateDiseaseArticleAction = async (data: any) => {
   const res = await fetch(URL + "/disease-create", {
@@ -154,36 +153,50 @@ const handleUpdateTreatmentArticleAction = async (data: any) => {
 }
 
 const getServiceByIdService = async (id: number) => {
-  const res = await fetch(URL + `/getServiceById/${id}`, {
-    method: "GET",
-  });
-
-  return await res.json();
-}
+  try {
+    const res = await fetch(`${API_URL}/getServiceById/${id}`, {
+      method: "GET",
+    });
+    if (!res.ok) throw new Error("API không phản hồi");
+    return await res.json();
+  } catch (error) {
+    console.error("Lỗi trong getServiceByIdService:", error instanceof Error ? error.message : error);
+    return { EC: -1, DT: {} }; // Fallback khi lỗi
+  }
+};
 
 const getKoiProjectService = async () => {
-  const res = await fetch(URL + `/koi-read`, {
-    method: "GET",
-  });
-
-  return await res.json();
-}
+  try {
+    const res = await fetch(`${API_URL}/koi-read`, { method: "GET" });
+    if (!res.ok) throw new Error("API không phản hồi");
+    return await res.json();
+  } catch (error) {
+    console.error("Lỗi trong getKoiProjectService:", error instanceof Error ? error.message : error);
+    return { EC: -1, DT: [] }; // Fallback khi lỗi
+  }
+};
 
 const getMaintainProjectService = async () => {
-  const res = await fetch(URL + `/maintain-read`, {
-    method: "GET",
-  });
-
-  return await res.json();
-}
+  try {
+    const res = await fetch(`${API_URL}/maintain-read`, { method: "GET" });
+    if (!res.ok) throw new Error("API không phản hồi");
+    return await res.json();
+  } catch (error) {
+    console.error("Lỗi trong getMaintainProjectService:", error instanceof Error ? error.message : error);
+    return { EC: -1, DT: [] }; // Fallback khi lỗi
+  }
+};
 
 const getDesignProjectService = async () => {
-  const res = await fetch(URL + `/design-read`, {
-    method: "GET",
-  });
-
-  return await res.json();
-}
+  try {
+    const res = await fetch(`${API_URL}/design-read`, { method: "GET" });
+    if (!res.ok) throw new Error("API không phản hồi");
+    return await res.json();
+  } catch (error) {
+    console.error("Lỗi trong getDesignProjectService:", error instanceof Error ? error.message : error);
+    return { EC: -1, DT: [] }; // Fallback khi lỗi
+  }
+};
 
 const getProductService = async (page?: number, limit?: number) => {
   if (page && limit) {
