@@ -7,16 +7,19 @@ import { MdOutlineKeyboardArrowRight } from "react-icons/md";
 
 import discount_1 from "@/assets/product/discount-1.png"
 import discount_2 from "@/assets/product/discount-2.png"
-import cay_trang_tri from "@/assets/product/cay-trang-tri.jpg";
-import bonsai from "@/assets/product/bonsai.jpg";
+import Card from 'react-bootstrap/Card';
+import Placeholder from 'react-bootstrap/Placeholder';
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
+import { getProductShowCaseByIdAction } from "@/app/action";
 
 const CommonProductComponent = () => {
     const router = useRouter();
     const initialSeconds = 1200;
     const [totalSeconds, setTotalSeconds] = useState(initialSeconds);
     const [isRunning, setIsRunning] = useState(true);
+    const [cayDeBan, setCayDeban] = useState<any>();
+    const [bonSai, setBonSai] = useState<any>();
 
     useEffect(() => {
         let timerInterval: any = null;
@@ -47,6 +50,26 @@ const CommonProductComponent = () => {
     const handleRedirectPage = (id: string) => {
         router.push(`/Products/category/${id}`)
     }
+
+    const fetchDataProduct = async (id: string, limit: string, setState: any) => {
+        const res = await getProductShowCaseByIdAction(id, limit);
+        if (res && res.EC === 0) {
+            setState(res.DT)
+        }
+    }
+
+    const handleRedirectProduct = (id: string) => {
+        router.push(`/Products/product/${id}`)
+    }
+
+    useEffect(() => {
+        fetchDataProduct("10", "6", setCayDeban);
+        fetchDataProduct("9", "2", setBonSai);
+    }, []);
+
+    const formatNumber = (num: number): string => {
+        return num.toLocaleString("vi-VN");
+    };
 
     return (
         <div className="product-component-container">
@@ -110,107 +133,55 @@ const CommonProductComponent = () => {
                                 <div className="left">
                                     <PiPottedPlantFill className="icon-title" /> Cây Để Bàn
                                 </div>
-                                <div className="right" onClick={() => handleRedirectPage("4")}>
+                                <div className="right" onClick={() => handleRedirectPage("10")}>
                                     Xem thêm  <MdOutlineKeyboardArrowRight className="icon-title" />
                                 </div>
                             </div>
 
                             <div className="list-product">
-                                <div className="each-product">
-                                    <div className="img-product">
-                                        <img className="each-img" src={cay_trang_tri.src} alt="" />
-                                    </div>
+                                {cayDeBan && cayDeBan.length > 0 ?
+                                    cayDeBan.map((item: any, index: number) => {
+                                        return (
+                                            <div className="each-product" key={item.id}>
+                                                <div className="img-product">
+                                                    <img className="each-img" src={item.image} alt="" />
+                                                </div>
 
-                                    <div className="info">
-                                        <div className="name">
-                                            Cây Trầu Bà
-                                        </div>
+                                                <div className="info">
+                                                    <div className="name">
+                                                        {item.name}
+                                                    </div>
 
-                                        <div className="price">
-                                            20.000đ <button>Mua ngay</button>
-                                        </div>
-                                    </div>
-                                </div>
+                                                    <div className="price">
+                                                        {formatNumber(+item.price)}đ <button onClick={() => handleRedirectProduct(item.id)}>Mua ngay</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )
+                                    })
 
-                                <div className="each-product">
-                                    <div className="img-product">
-                                        <img className="each-img" src={cay_trang_tri.src} alt="" />
-                                    </div>
+                                    :
 
-                                    <div className="info">
-                                        <div className="name">
-                                            Cây Trầu Bà
-                                        </div>
-
-                                        <div className="price">
-                                            20.000đ <button>Mua ngay</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="each-product">
-                                    <div className="img-product">
-                                        <img className="each-img" src={cay_trang_tri.src} alt="" />
-                                    </div>
-
-                                    <div className="info">
-                                        <div className="name">
-                                            Cây Trầu Bà
-                                        </div>
-
-                                        <div className="price">
-                                            20.000đ <button>Mua ngay</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="each-product">
-                                    <div className="img-product">
-                                        <img className="each-img" src={cay_trang_tri.src} alt="" />
-                                    </div>
-
-                                    <div className="info">
-                                        <div className="name">
-                                            Cây Trầu Bà
-                                        </div>
-
-                                        <div className="price">
-                                            20.000đ <button>Mua ngay</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="each-product">
-                                    <div className="img-product">
-                                        <img className="each-img" src={cay_trang_tri.src} alt="" />
-                                    </div>
-
-                                    <div className="info">
-                                        <div className="name">
-                                            Cây Trầu Bà
-                                        </div>
-
-                                        <div className="price">
-                                            20.000đ <button>Mua ngay</button>
-                                        </div>
-                                    </div>
-                                </div>
-
-                                <div className="each-product">
-                                    <div className="img-product">
-                                        <img className="each-img" src={cay_trang_tri.src} alt="" />
-                                    </div>
-
-                                    <div className="info">
-                                        <div className="name">
-                                            Cây Trầu Bà
-                                        </div>
-
-                                        <div className="price">
-                                            20.000đ <button>Mua ngay</button>
-                                        </div>
-                                    </div>
-                                </div>
+                                    [...Array(6)].map((_, index) => {
+                                        return (
+                                            <div className='each-product' key={index}>
+                                                <Card style={{ width: '100%' }}>
+                                                    <Card.Body style={{ height: "180px", backgroundColor: "#ccc", padding: "20px" }} />
+                                                    <Card.Body>
+                                                        <Placeholder as={Card.Title} animation="glow">
+                                                            <Placeholder xs={6} />
+                                                        </Placeholder>
+                                                        <Placeholder as={Card.Text} animation="glow">
+                                                            <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
+                                                            <Placeholder xs={6} /> <Placeholder xs={8} />
+                                                        </Placeholder>
+                                                        <Placeholder.Button variant="secondary" xs={6} animation="glow" />
+                                                    </Card.Body>
+                                                </Card>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
                         </div>
 
@@ -225,38 +196,49 @@ const CommonProductComponent = () => {
                             </div>
 
                             <div className="list-product">
-                                <div className="each-product bon-sai-product">
-                                    <div className="img-product">
-                                        <img className="each-img" src={bonsai.src} alt="" />
-                                    </div>
+                                {bonSai && bonSai.length > 0 ?
+                                    bonSai.map((item: any) => {
+                                        return (
+                                            <div className="each-product bon-sai-product" key={item.id}>
+                                                <div className="img-product">
+                                                    <img className="each-img" src={item.image} alt="" />
+                                                </div>
 
-                                    <div className="info">
-                                        <div className="name">
-                                            Cây Bon Sai tứ thân
-                                        </div>
+                                                <div className="info">
+                                                    <div className="name">
+                                                        {item.name}
+                                                    </div>
 
-                                        <div className="price">
-                                            20.000.000đ <button>Mua ngay</button>
-                                        </div>
-                                    </div>
-                                </div>
+                                                    <div className="price">
+                                                        {formatNumber(+item.price)}đ <button>Mua ngay</button>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        )
+                                    })
 
-                                <div className="each-product bon-sai-product">
-                                    <div className="img-product">
-                                        <img className="each-img" src={bonsai.src} alt="" />
-                                    </div>
+                                    :
 
-                                    <div className="info">
-                                        <div className="name">
-                                            Cây Bon sai 40 năm tuôi
-                                        </div>
-
-                                        <div className="price">
-                                            60.000.000đ <button>Mua ngay</button>
-                                        </div>
-                                    </div>
-                                </div>
-
+                                    [...Array(2)].map((_, index) => {
+                                        return (
+                                            <div className='each-product bon-sai-product' key={index}>
+                                                <Card style={{ width: '100%' }}>
+                                                    <Card.Body style={{ height: "180px", backgroundColor: "#ccc", padding: "20px" }} />
+                                                    <Card.Body>
+                                                        <Placeholder as={Card.Title} animation="glow">
+                                                            <Placeholder xs={6} />
+                                                        </Placeholder>
+                                                        <Placeholder as={Card.Text} animation="glow">
+                                                            <Placeholder xs={7} /> <Placeholder xs={4} /> <Placeholder xs={4} />{' '}
+                                                            <Placeholder xs={6} /> <Placeholder xs={8} />
+                                                        </Placeholder>
+                                                        <Placeholder.Button variant="secondary" xs={6} animation="glow" />
+                                                    </Card.Body>
+                                                </Card>
+                                            </div>
+                                        )
+                                    })
+                                }
                             </div>
                         </div>
                     </div>

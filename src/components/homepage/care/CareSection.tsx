@@ -32,7 +32,6 @@ const CareSection = () => {
         if (text.length <= maxLength) return text;
 
         let trimmedText = text.slice(0, maxLength);
-        // Nếu ký tự cuối không phải khoảng trắng, tìm vị trí khoảng trắng gần nhất trước đó
         if (text[maxLength] !== ' ' && trimmedText.includes(' ')) {
             trimmedText = trimmedText.slice(0, trimmedText.lastIndexOf(' '));
         }

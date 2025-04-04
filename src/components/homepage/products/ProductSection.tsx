@@ -1,6 +1,26 @@
+"use client"
+import { useEffect, useState } from 'react';
 import './ProductSection.scss';
+import { getRandomProductAction } from '@/app/action';
 
 const ProductionSection = () => {
+    const [data, setData] = useState<any>();
+
+    const fetchData = async () => {
+        const res = await getRandomProductAction("8");
+        if (res && res.EC === 0) {
+            setData(res.DT);
+        }
+    }
+
+    useEffect(() => {
+        fetchData();
+    }, []);
+
+    const formatNumber = (num: number): string => {
+        return num.toLocaleString("vi-VN");
+    };
+
     return (
         <div className="product-section">
             <div className="main-title">
@@ -9,36 +29,32 @@ const ProductionSection = () => {
             </div>
 
             <div className='product-content'>
-                <div className='each-product'>
-                    Máy đo huyết áp
-                </div>
-                <div className='each-product'>
-                    Nhiệt kế điện tử
-                </div>
+                {data && data.length > 0 &&
+                    data.map((item: any, index: number) => {
+                        return (
+                            <div className="each-product" key={item.id}>
+                                <img
+                                    src={item.image}
+                                    alt="Cây sân vườn"
+                                    className="img-product"
+                                />
+                                <div className="text-product">
+                                    <div className="name-product">
+                                        {item.name}
+                                    </div>
 
-                <div className='each-product'>
-                    Máy đo đường huyết
-                </div>
+                                    <div className="price">
+                                        Giá: {formatNumber(+item.price)} <button>Mua</button>
+                                    </div>
+                                </div>
 
-                <div className='each-product'>
-                    Máy xông khí dung
-                </div>
-
-                <div className='each-product'>
-                    Bông băng, gạc y tế
-                </div>
-
-                <div className='each-product'>
-                    Máy trợ tim
-                </div>
-
-                <div className='each-product'>
-                    Máy tạo oxy
-                </div>
-
-                <div className='each-product'>
-                    Xe lăn y tế
-                </div>
+                                <div className="badge">
+                                    Top {index + 1}
+                                </div>
+                            </div>
+                        )
+                    })
+                }
             </div>
 
             <div className='explore'>

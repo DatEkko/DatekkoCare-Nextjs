@@ -2,15 +2,20 @@ import { notFound } from "next/navigation";
 import {
     getAllOrganArticle, getServiceByIdService,
     getAllDiseaseArticle, getKoiProjectService,
-    getMaintainProjectService,
-    getDesignProjectService
+    getMaintainProjectService, getDesignProjectService
 } from "@/app/action";
 import { DetailServiceComponent } from "@/components/services/DetailServiceComponent";
 import PerfectScrollContainer from "@/components/scrollbar/PerfectScrollBarContainer";
 import FooterComponent from "@/components/footer/FooterComponent";
 
+// Định nghĩa type cho params
+interface Params {
+    id: string;
+}
+
+// Sử dụng type chính xác cho Page component trong Next.js
 interface Props {
-    params: { id: string };
+    params: Promise<Params>; // params là một Promise chứa object với id
 }
 
 export async function generateStaticParams() {
@@ -20,7 +25,8 @@ export async function generateStaticParams() {
 }
 
 const ServicePage = async ({ params }: Props) => {
-    const { id } = await params;
+    const { id } = await params; // await Promise để lấy params
+
     let service = {};
     let allService = [];
     let allProject = [];
@@ -32,7 +38,6 @@ const ServicePage = async ({ params }: Props) => {
         service = res.DT;
     }
 
-
     const res2 = await getAllOrganArticle();
     if (res2 && res2.EC === 0) {
         allService = res2.DT;
@@ -43,19 +48,16 @@ const ServicePage = async ({ params }: Props) => {
         if (res && res.EC === 0) {
             allProject = res.DT;
         }
-
     } else if (+id === 2) {
         const res = await getMaintainProjectService();
         if (res && res.EC === 0) {
             allProject = res.DT;
         }
-
     } else if (+id === 4) {
         const res = await getDesignProjectService();
         if (res && res.EC === 0) {
             allProject = res.DT;
         }
-
     } else {
         const res = await getAllDiseaseArticle(1, 5);
         if (res && res.EC === 0) {

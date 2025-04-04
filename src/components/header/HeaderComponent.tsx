@@ -1,7 +1,9 @@
 'use client'
 import Link from 'next/link';
 import './HeaderComponent.scss';
-import { Navbar, Container, Nav } from 'react-bootstrap';
+import Navbar from 'react-bootstrap/Navbar';
+import Container from 'react-bootstrap/Container';
+import Nav from 'react-bootstrap/Nav';
 import { usePathname } from "next/navigation";
 
 const HeaderComponent = () => {
@@ -11,13 +13,13 @@ const HeaderComponent = () => {
         <div className="header-component">
             <Navbar expand="lg" className="bg-body-tertiary">
                 <Container>
-                    <Link className='brand' prefetch href={'/'}>DATEkko Plant</Link>
+                    <Link className='brand' href={'/'}>PlantShop</Link>
                     <Navbar.Toggle aria-controls="basic-navbar-nav" />
                     <Navbar.Collapse id="basic-navbar-nav">
                         <Nav className="me-auto">
-                            <Link prefetch className={pathName === '/' ? 'nav-link active' : 'nav-link'} href={'/'}>Trang chủ</Link>
-                            <Link prefetch className={pathName === '/Products' ? 'nav-link active' : 'nav-link'} href={'/Products'}>Sản Phẩm</Link>
-                            <Link prefetch className={pathName === '/Care' ? 'nav-link active' : 'nav-link'} href={'/Care'}>Cẩm Nang</Link>
+                            <Link className={pathName === '/' ? 'nav-link active' : 'nav-link'} href={'/'}>Trang chủ</Link>
+                            <Link className={pathName === '/Products' ? 'nav-link active' : 'nav-link'} href={'/Products'}>Sản Phẩm</Link>
+                            <Link className={pathName === '/Care' ? 'nav-link active' : 'nav-link'} href={'/Care'}>Cẩm Nang</Link>
                         </Nav>
 
                         <Nav>

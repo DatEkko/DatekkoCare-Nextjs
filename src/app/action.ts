@@ -288,6 +288,22 @@ const getReleatedProductAction = async (data: any) => {
   return await res.json();
 }
 
+const getProductShowCaseByIdAction = async (id: string, limit: string) => {
+  const res = await fetch(URL + `/product-showcase?id=${id}&limit=${limit}`, {
+    method: "GET",
+  });
+
+  return await res.json();
+}
+
+const getRandomProductAction = async (limit: string) => {
+  const res = await fetch(URL + `/random-product?limit=${limit}`, {
+    method: "GET",
+  });
+
+  return await res.json();
+}
+
 export {
   getAllOrganArticle, handleCreateArticleAction,
   handleDeleteOrganArticle, handleUpdateArticleAction,
@@ -299,5 +315,6 @@ export {
   getMaintainProjectService, getDesignProjectService, getProductService,
   getAllCodeProductService, getAllCodeConditionService, handleCreateProductAction,
   handleDeleteProductArticle, handleUpdateProductAction, getProductListByIdAction,
-  getProductByIdAction, getReleatedProductAction
+  getProductByIdAction, getReleatedProductAction, getProductShowCaseByIdAction,
+  getRandomProductAction
 }
