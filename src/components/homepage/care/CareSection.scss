@@ -81,3 +81,29 @@
         }
     }
 }
+
+@media (max-width: 480px) {
+    .care-section {
+        margin-top: 80px;
+
+        .main-title {
+            font-size: 1.8em;
+
+            .underline {
+                height: 4px;
+            }
+        }
+
+        .care-content {
+            flex-direction: column;
+
+            .each-care {
+                width: 100%;
+            }
+        }
+
+        .explore {
+            justify-content: center;
+        }
+    }
+}

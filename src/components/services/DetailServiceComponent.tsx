@@ -1,6 +1,7 @@
 'use client'
 import { useRouter } from "next/navigation";
 import "./DetailServiceComponent.scss";
+import Image from "next/image";
 
 export const DetailServiceComponent = ({ service, allService, id, allProject }: any) => {
     const router = useRouter();
@@ -8,7 +9,6 @@ export const DetailServiceComponent = ({ service, allService, id, allProject }: 
         router.push(`/Services/${id}`);
     };
 
-    console.log(allProject)
     return (
         <>
             <div className="detail-service-component">
@@ -17,7 +17,6 @@ export const DetailServiceComponent = ({ service, allService, id, allProject }: 
                 </div>
 
                 <div className="infor">
-
                     <div className="description">
                         {service.description}
 
@@ -27,7 +26,13 @@ export const DetailServiceComponent = ({ service, allService, id, allProject }: 
                     </div>
 
                     <div className="image">
-                        <img src={service.image} alt="" />
+                        <Image
+                            src={service.image}
+                            alt=""
+                            fill
+                            quality={100}
+                            className="image-service"
+                        />
                     </div>
                 </div>
             </div>
@@ -46,7 +51,13 @@ export const DetailServiceComponent = ({ service, allService, id, allProject }: 
                                     className="each-service"
                                     key={item.id}>
                                     <div className="image">
-                                        <img src={item.image}></img>
+                                        <Image
+                                            src={item.image}
+                                            alt=""
+                                            fill
+                                            quality={100}
+                                            className="image-service"
+                                        />
                                     </div>
 
                                     <div className="name">
@@ -63,28 +74,33 @@ export const DetailServiceComponent = ({ service, allService, id, allProject }: 
 
             <div className="projects">
                 {allProject && allProject.length > 0 &&
-                    allProject
-                        .map((item: any, index: number) => {
-                            return (
-                                <div
-                                    className="each-project"
-                                    key={item.id}>
-                                    <div className="image">
-                                        <img src={item.image}></img>
+                    allProject.map((item: any, index: number) => {
+                        return (
+                            <div
+                                className="each-project"
+                                key={item.id}>
+                                <div className="image">
+                                    <Image
+                                        src={item.image}
+                                        alt=""
+                                        fill
+                                        quality={100}
+                                        className="image-service"
+                                    />
+                                </div>
+
+                                <div className="infor">
+                                    <div className="name">
+                                        {item.name}
                                     </div>
 
-                                    <div className="infor">
-                                        <div className="name">
-                                            {item.name}
-                                        </div>
-
-                                        <div className="content">
-                                            {item.description}
-                                        </div>
+                                    <div className="content">
+                                        {item.description}
                                     </div>
                                 </div>
-                            )
-                        })
+                            </div>
+                        )
+                    })
                 }
             </div>
         </>

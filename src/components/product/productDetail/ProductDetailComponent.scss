@@ -3,16 +3,17 @@
 
     .content {
         display: flex;
-        gap    : 20px;
+        gap    : 40px;
 
         .content-left {
-            width  : 40%;
+            width  : 50%;
             padding: 20px 0;
 
             .image {
-                height: 500px;
+                height  : 450px;
+                position: relative;
 
-                img {
+                .image-production {
                     border-radius: 18px;
                     width        : 100%;
                     height       : 100%;
@@ -54,37 +55,6 @@
                     font-size  : 1.2em;
                     font-weight: 600;
                 }
-
-                .counter {
-                    display: flex;
-                    gap    : 10px;
-
-                    .btn {
-                        background-color: rgba(255, 166, 0, 0.714);
-                        border-radius   : 10px;
-                        padding         : 8px 20px;
-                        cursor          : pointer;
-                        user-select     : none;
-                        display         : flex;
-                        align-items     : center;
-                        justify-content : center;
-                        outline         : none;
-                        border          : none;
-                    }
-
-                    .number {
-                        width          : 50px;
-                        display        : flex;
-                        align-items    : center;
-                        justify-content: center;
-                        font-weight    : 800;
-                        font-size      : 1.5;
-                        text-align     : center;
-                        outline        : none;
-                        border         : none;
-                    }
-                }
-
             }
 
 
@@ -106,4 +76,39 @@
             }
         }
     }
+}
+
+@media (max-width: 480px) {
+    .product-detail-component {
+        min-height: 100vh;
+
+        .content {
+            display       : flex;
+            flex-direction: column;
+            gap           : 20px;
+
+            .content-left {
+                width  : 100%;
+                padding: 20px 0;
+
+                .image {
+                    height  : 350px;
+                    position: relative;
+
+                    .image-production {
+                        border-radius: 18px;
+                        width        : 100%;
+                        height       : 100%;
+                        object-fit   : cover;
+                        box-shadow   : 0 4px 8px rgba(0, 0, 0, 0.3);
+                    }
+                }
+            }
+
+            .content-right {
+                width: 100%;
+            }
+        }
+    }
+
 }

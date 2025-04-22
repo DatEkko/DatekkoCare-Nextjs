@@ -11,14 +11,13 @@ import { DetailServiceComponent } from "@/components/services/DetailServiceCompo
 import PerfectScrollContainer from "@/components/scrollbar/PerfectScrollBarContainer";
 import FooterComponent from "@/components/footer/FooterComponent";
 
-// Định nghĩa các interface cho dữ liệu
 interface Article {
     id: number;
-    [key: string]: any; // Có thể thêm các thuộc tính khác nếu cần
+    [key: string]: any;
 }
 
 interface Service {
-    [key: string]: any; // Tùy chỉnh dựa trên cấu trúc thực tế của service
+    [key: string]: any;
 }
 
 interface ApiResponse<T> {
@@ -26,7 +25,6 @@ interface ApiResponse<T> {
     DT: T;
 }
 
-// Định nghĩa params
 interface Params {
     id: string;
 }
@@ -35,7 +33,6 @@ interface Props {
     params: Promise<Params>;
 }
 
-// Hàm generateStaticParams với fallback
 export async function generateStaticParams(): Promise<{ id: string }[]> {
     try {
         const res = await getAllOrganArticle();
@@ -50,7 +47,6 @@ export async function generateStaticParams(): Promise<{ id: string }[]> {
     }
 }
 
-// Component ServicePage
 const ServicePage = async ({ params }: Props) => {
     const { id } = await params;
 

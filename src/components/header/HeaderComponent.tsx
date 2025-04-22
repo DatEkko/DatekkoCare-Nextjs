@@ -22,9 +22,9 @@ const HeaderComponent = () => {
                             <Link className={pathName === '/Care' ? 'nav-link active' : 'nav-link'} href={'/Care'}>Cẩm Nang</Link>
                         </Nav>
 
-                        <Nav>
-                            <Nav.Link className='login-item' href="/login">Login</Nav.Link>
-                        </Nav>
+                        <div className='contact'>
+                            <Nav.Link className='login-item' href={'/contact'}>Liên hệ chúng tôi</Nav.Link>
+                        </div>
                     </Navbar.Collapse>
                 </Container>
             </Navbar>

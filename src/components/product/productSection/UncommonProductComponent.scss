@@ -42,9 +42,10 @@
                     box-shadow      : 0 4px 8px rgba(0, 0, 0, 0.5);
 
                     .image {
-                        height: 70%;
+                        height  : 70%;
+                        position: relative;
 
-                        img {
+                        .image-prod {
                             border-radius: 15px;
                             width        : 100%;
                             height       : 100%;
@@ -85,6 +86,114 @@
                         }
                     }
 
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .uncommon-product-component-container {
+        background-color: white;
+
+        .container {
+            padding: unset;
+
+            .item-category-product {
+                padding: 40px 20px;
+
+                .title {
+                    display        : flex;
+                    align-items    : center;
+                    justify-content: space-between;
+
+                    .name {
+                        font-size  : 1.5em;
+                        font-weight: 800;
+                    }
+
+                    .more {
+                        user-select: none;
+                        cursor     : pointer;
+                        display    : flex;
+                        align-items: center;
+                        font-size  : 14px;
+
+                        .icon {
+                            font-size: 25px;
+                        }
+                    }
+                }
+
+                .list-product {
+                    display        : flex;
+                    justify-content: space-between;
+                    padding        : 10px 0;
+                    flex-wrap      : wrap;
+                    gap            : 20px;
+
+                    .each-product {
+                        width           : 45%;
+                        height          : 350px;
+                        border-radius   : 15px;
+                        background-color: white;
+                        box-shadow      : 0 4px 8px rgba(0, 0, 0, 0.5);
+
+                        .image {
+                            height  : 55%;
+                            position: relative;
+
+                            .image-prod {
+                                border-radius: 15px;
+                                width        : 100%;
+                                height       : 100%;
+                                object-fit   : cover;
+                            }
+                        }
+
+                        .info {
+                            height         : 45%;
+                            padding        : 10px;
+                            display        : flex;
+                            flex-direction : column;
+                            justify-content: space-between;
+
+                            .name {
+                                font-size  : 0.8em;
+                                font-weight: 600;
+                            }
+
+                            .sale {
+                                margin-top     : 10px;
+                                display        : flex;
+                                flex-direction : column;
+                                justify-content: space-between;
+                                align-items    : center;
+                                gap            : 10px;
+
+                                .price {
+                                    font-size: 1em;
+                                }
+
+                                .buy {
+                                    width: 100%;
+
+                                    button {
+                                        width           : 100%;
+                                        border          : none;
+                                        outline         : none;
+                                        background-color: rgba(0, 150, 20, 0.807);
+                                        color           : white;
+                                        padding         : 5px 20px;
+                                        border-radius   : 8px;
+                                        font-size       : 1.5em;
+                                        box-sizing      : border-box;
+                                    }
+                                }
+                            }
+                        }
+
+                    }
                 }
             }
         }

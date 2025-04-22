@@ -36,10 +36,15 @@
             border-radius   : 15px;
 
             .img-product {
+                position     : relative;
                 border-radius: 15px;
                 width        : 100%;
                 height       : 65%;
-                object-fit   : cover;
+
+                .image-product {
+                    border-radius: 15px;
+                    object-fit   : cover;
+                }
             }
 
             .text-product {
@@ -88,6 +93,46 @@
             background-color: orange;
             border          : none;
             color           : white;
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .product-section {
+        .product-content {
+            padding        : 30px 0;
+            display        : flex;
+            gap            : 40px;
+            justify-content: space-around;
+            flex-wrap      : wrap;
+
+            .each-product {
+                width : 100%;
+                height: 350px;
+
+                .text-product {
+                    .price {
+                        font-size: 1.2em;
+                    }
+                }
+
+                .badge {
+                    right: 3%;
+                }
+            }
+        }
+
+        .explore {
+            display        : flex;
+            justify-content: center;
+
+            button {
+                padding         : 8px 16px;
+                border-radius   : 5px;
+                background-color: rgb(9, 185, 18);
+                border          : none;
+                color           : white;
+            }
         }
     }
 }

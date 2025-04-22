@@ -11,6 +11,15 @@
             color          : rgb(5, 52, 5);
         }
 
+        .contact {
+            .login-item {
+                border       : 2px solid black;
+                padding      : 8px 20px;
+                border-radius: 10px 0 10px 0;
+                width        : fit-content;
+            }
+        }
+
         .navbar-nav {
             padding-left: 40px;
             font-size   : 1.1em;
@@ -28,13 +37,6 @@
                     border-radius: 2px;
                     width        : fit-content;
                 }
-            }
-
-            .login-item {
-                border       : 2px solid black;
-                padding      : 8px 20px;
-                border-radius: 10px 0 10px 0;
-                width        : fit-content;
             }
         }
     }
@@ -69,9 +71,13 @@
         .navbar {
             .navbar-collapse {
                 &.show {
+                    margin-top      : 10px;
                     background-color: white;
-                    z-index         : 1;
+                    z-index         : 1000;
                     padding         : 40px 20px;
+                    border          : 3px solid black;
+                    border-top      : none;
+                    border-radius   : 20px;
                 }
 
                 .navbar-nav {
@@ -80,6 +86,12 @@
                             border: unset;
                         }
                     }
+                }
+
+                .contact {
+                    margin-top     : 40px;
+                    display        : flex;
+                    justify-content: center;
                 }
             }
         }

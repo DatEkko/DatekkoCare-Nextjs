@@ -12,6 +12,7 @@ import Placeholder from 'react-bootstrap/Placeholder';
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import { getProductShowCaseByIdAction } from "@/app/action";
+import Image from "next/image";
 
 const CommonProductComponent = () => {
     const router = useRouter();
@@ -86,7 +87,13 @@ const CommonProductComponent = () => {
                                     Chậu cây size 40x40
                                 </div>
                                 <div className="image-product">
-                                    <img src={discount_1.src} alt="" />
+                                    <Image
+                                        src={discount_1.src}
+                                        alt="Khuyến mãi"
+                                        fill
+                                        quality={100}
+                                        className="img-product-sale"
+                                    />
                                 </div>
                                 <div className="btn-buy">
                                     <button>Mua ngay</button>
@@ -99,7 +106,13 @@ const CommonProductComponent = () => {
                                     Dụng cụ làm vườn
                                 </div>
                                 <div className="image-product">
-                                    <img src={discount_2.src} alt="" />
+                                    <Image
+                                        src={discount_2.src}
+                                        alt=""
+                                        fill
+                                        quality={100}
+                                        className="img-product-sale"
+                                    />
                                 </div>
                                 <div className="btn-buy">
                                     <button>Mua ngay</button>
@@ -144,7 +157,13 @@ const CommonProductComponent = () => {
                                         return (
                                             <div className="each-product" key={item.id}>
                                                 <div className="img-product">
-                                                    <img className="each-img" src={item.image} alt="" />
+                                                    <Image
+                                                        className="each-img"
+                                                        src={item.image}
+                                                        alt=""
+                                                        fill
+                                                        quality={100}
+                                                    />
                                                 </div>
 
                                                 <div className="info">
@@ -201,7 +220,13 @@ const CommonProductComponent = () => {
                                         return (
                                             <div className="each-product bon-sai-product" key={item.id}>
                                                 <div className="img-product">
-                                                    <img className="each-img" src={item.image} alt="" />
+                                                    <Image
+                                                        className="each-img"
+                                                        src={item.image}
+                                                        alt=""
+                                                        fill
+                                                        quality={100}
+                                                    />
                                                 </div>
 
                                                 <div className="info">

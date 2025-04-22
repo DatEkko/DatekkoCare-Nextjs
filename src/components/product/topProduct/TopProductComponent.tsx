@@ -5,6 +5,7 @@ import { getRandomProductAction } from "@/app/action";
 import Card from 'react-bootstrap/Card';
 import Placeholder from 'react-bootstrap/Placeholder';
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const TopProductComponent = () => {
     const router = useRouter();
@@ -41,11 +42,15 @@ const TopProductComponent = () => {
                         data.map((item: any, index: number) => {
                             return (
                                 <div className="each-product" key={item.id}>
-                                    <img
-                                        src={item.image}
-                                        alt="Cây sân vườn"
-                                        className="img-product"
-                                    />
+                                    <div className='img-product'>
+                                        <Image
+                                            src={item.image}
+                                            alt="Cây sân vườn"
+                                            className="image-product"
+                                            fill
+                                            quality={100}
+                                        />
+                                    </div>
                                     <div className="text-product">
                                         <div className="name-product">
                                             {item.name}

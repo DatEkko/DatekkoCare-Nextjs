@@ -23,10 +23,15 @@
                 position  : relative;
 
                 .img-product {
+                    position     : relative;
                     border-radius: 15px;
                     width        : 100%;
-                    height       : 65%;
-                    object-fit   : cover;
+                    height       : 200px;
+
+                    .image-product {
+                        object-fit   : cover;
+                        border-radius: 10px;
+                    }
                 }
 
                 .text-product {
@@ -64,4 +69,92 @@
     }
 
 
+}
+
+@media (max-width: 480px) {
+    .top-product-component-container {
+        background-color: white;
+        height          : auto;
+
+        .container {
+            padding: 20px 0;
+
+            .title {
+                text-align : center;
+                font-size  : 1.8em;
+                font-weight: 600;
+            }
+
+            .top-product {
+                padding        : 40px 0;
+                display        : flex;
+                width          : 100%;
+                justify-content: center;
+                flex-wrap      : wrap;
+                gap            : 20px;
+
+                .each-product {
+                    border       : 2px solid rgb(2, 82, 18);
+                    height       : 400px;
+                    width        : 40%;
+                    text-align   : center;
+                    position     : relative;
+                    border-radius: 10px;
+
+                    .img-product {
+                        position     : relative;
+                        border-radius: 15px;
+                        width        : 100%;
+                        height       : 200px;
+
+                        .image-product {
+                            object-fit   : cover;
+                            border-radius: 10px;
+                        }
+                    }
+
+                    .text-product {
+                        height         : 200px;
+                        padding        : 10px;
+                        display        : flex;
+                        flex-direction : column;
+                        justify-content: space-between;
+
+
+                        .price {
+                            padding        : 20px 0;
+                            display        : flex;
+                            flex-direction : column;
+                            justify-content: space-between;
+                            align-items    : center;
+                            gap            : 20px;
+
+                            button {
+                                width           : 100%;
+                                border          : none;
+                                outline         : none;
+                                background-color: green;
+                                color           : white;
+                                padding         : 5px 15px;
+                                border-radius   : 8px;
+                            }
+                        }
+                    }
+
+                    .badge {
+                        position        : absolute;
+                        background-color: red;
+                        top             : 3%;
+                        right           : -10%;
+                        padding         : 10px 15px;
+                        border-radius   : 15px;
+                    }
+                }
+            }
+
+
+        }
+
+
+    }
 }

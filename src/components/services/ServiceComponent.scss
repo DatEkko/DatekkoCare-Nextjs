@@ -42,12 +42,45 @@
             width: 45%;
 
             .img-container {
-                background     : center center no-repeat;
-                background-size: cover;
-                width          : 100%;
-                height         : 400px;
-                border-radius  : 10px;
-                box-shadow     : 0px 4px 10px rgba(0, 0, 0, 0.3);
+                position     : relative;
+                width        : 100%;
+                height       : 400px;
+                border-radius: 10px;
+                box-shadow   : 0px 4px 10px rgba(0, 0, 0, 0.3);
+
+                .image-service {
+                    border-radius: 10px;
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .services-container {
+        .title {
+            padding-top: 40px;
+            font-size  : 1.8em;
+        }
+
+        .each-service {
+            padding-top    : 0;
+            padding-bottom : 80px;
+            display        : flex;
+            flex-direction : column;
+            justify-content: space-between;
+            gap            : 20px;
+
+            .content-left {
+                width: 100%;
+
+                .title-service {
+                    font-size: 1.5em;
+                }
+            }
+
+            .content-right {
+                width: 100%;
             }
         }
     }

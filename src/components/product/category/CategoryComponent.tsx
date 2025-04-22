@@ -1,5 +1,4 @@
 'use client'
-import { useState } from "react";
 import "./CategoryComponent.scss";
 import { FaHouseCircleCheck } from "react-icons/fa6";
 import { MdYard } from "react-icons/md";

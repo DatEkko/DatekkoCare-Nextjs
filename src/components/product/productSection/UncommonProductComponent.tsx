@@ -7,6 +7,7 @@ import { getProductShowCaseByIdAction } from "@/app/action";
 import { useEffect, useState } from "react";
 import Card from 'react-bootstrap/Card';
 import Placeholder from 'react-bootstrap/Placeholder';
+import Image from "next/image";
 
 interface Product {
     id: string;
@@ -77,7 +78,14 @@ const UncommonProductComponent = () => {
     const ProductItem = ({ item }: { item: Product }) => (
         <div className="each-product" key={item.id}>
             <div className="image">
-                <img src={item.image} alt={item.name} loading="lazy" />
+                <Image
+                    src={item.image}
+                    alt={item.name}
+                    loading="lazy"
+                    fill
+                    quality={100}
+                    className="image-prod"
+                />
             </div>
             <div className="info">
                 <div className="name">{item.name}</div>

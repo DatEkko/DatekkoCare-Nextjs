@@ -48,8 +48,9 @@
                         .image-product {
                             height    : 250px;
                             margin-top: 10px;
+                            position  : relative;
 
-                            img {
+                            .img-product-sale {
                                 object-fit: contain;
                                 width     : 100%;
                                 height    : 100%;
@@ -182,7 +183,8 @@
                             overflow        : hidden;
 
                             .img-product {
-                                height: 70%;
+                                height  : 70%;
+                                position: relative;
 
                                 .each-img {
                                     object-fit   : cover;
@@ -227,7 +229,12 @@
                             position: relative;
 
                             .img-product {
-                                height: 100%;
+                                height  : 100%;
+                                position: relative;
+
+                                .each-img {
+                                    object-fit: cover;
+                                }
                             }
 
                             .info {
@@ -238,6 +245,76 @@
                                 width           : 90%;
                                 background-color: white;
                                 z-index         : 1;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .product-component-container {
+        background: white;
+        height    : auto;
+
+        .container {
+            padding: 60px 20px;
+
+            .common-product {
+                display        : flex;
+                justify-content: space-between;
+                flex-direction : column;
+                gap            : 40px;
+
+                .content-left {
+                    width: 100%;
+                }
+
+                .content-right {
+                    width: 100%;
+
+                    .each-type-product {
+                        .main-title {
+                            padding  : 15px;
+                            font-size: 1em;
+
+                            .right {
+                                font-size: 14px;
+                            }
+                        }
+
+                        .list-product {
+                            margin-top     : 40px;
+                            height         : auto;
+                            display        : flex;
+                            flex-wrap      : wrap;
+                            justify-content: space-between;
+                            gap            : 30px;
+
+                            .each-product {
+                                width: 100%;
+                            }
+                        }
+                    }
+
+                    .bon-sai {
+                        margin-top: 80px;
+
+                        .list-product {
+                            .bon-sai-product {
+                                width   : 100%;
+                                position: relative;
+
+                                .img-product {
+                                    height  : 100%;
+                                    position: relative;
+
+                                    .each-img {
+                                        object-fit: cover;
+                                    }
+                                }
                             }
                         }
                     }

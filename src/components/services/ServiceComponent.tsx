@@ -1,11 +1,12 @@
 "use client";
 import "./ServiceComponent.scss";
-import s1 from "./../../assets/thi công sân vườn.jpg";
-import s2 from "./../../assets/chăm sóc.jpg";
-import s3 from "./../../assets/cá koi.jpg";
-import s4 from "./../../assets/bán cây.jpg";
+import s1 from "./../../assets/thi-cong.jpg";
+import s2 from "./../../assets/cham-soc.jpg";
+import s3 from "./../../assets/ca-koi.jpg";
+import s4 from "./../../assets/ban-cay.jpg";
 import { useRouter } from "next/navigation";
 import { useState, useTransition } from "react";
+import Image from "next/image";
 
 const ServiceComponent = () => {
     const router = useRouter();
@@ -88,7 +89,15 @@ const ServiceComponent = () => {
                     </div>
 
                     <div className="content-right">
-                        <div className="img-container" style={{ backgroundImage: `url("${service.img}")` }}></div>
+                        <div className="img-container">
+                            <Image
+                                src={service.img}
+                                fill
+                                alt="ảnh dịch vụ"
+                                quality={100}
+                                className="image-service"
+                            />
+                        </div>
                     </div>
                 </div>
             ))}

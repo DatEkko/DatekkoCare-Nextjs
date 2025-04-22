@@ -4,9 +4,8 @@ import "./ProductDetailComponent.scss";
 import { useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { IoCart } from "react-icons/io5";
-import { TiPlus } from "react-icons/ti";
-import { FaMinus } from "react-icons/fa";
 import RelatedProductComponent from "./RelatedProductComponent";
+import Image from "next/image";
 
 interface Params {
     [key: string]: string;
@@ -26,21 +25,6 @@ const ProductDetailComponent = () => {
         fetchDataProduct()
     }, [])
 
-    const [count, setCount] = useState(1);
-
-    const handleChangeInput = (value: string) => {
-        if (value === "") {
-            setCount(1);
-            return;
-        }
-        const num = Number(value);
-        if (!isNaN(num) && num >= 1) {
-            setCount(num);
-        }
-    };
-
-    const increase = () => setCount((prev) => prev + 1);
-    const decrease = () => setCount((prev) => (prev > 1 ? prev - 1 : 1));
 
     const formatNumber = (num: number): string => {
         return num.toLocaleString("vi-VN");
@@ -50,9 +34,18 @@ const ProductDetailComponent = () => {
         <div className="product-detail-component">
             <div className="content">
                 <div className="content-left">
-                    <div className="image">
-                        <img src={dataProduct?.image} alt="" />
-                    </div>
+                    {dataProduct &&
+                        <div className="image">
+                            <Image
+                                src={dataProduct.image}
+                                alt=""
+                                fill
+                                quality={100}
+                                className="image-production"
+                            />
+                        </div>
+                    }
+
                 </div>
 
                 <div className="content-right">
@@ -69,22 +62,16 @@ const ProductDetailComponent = () => {
                         <div className="price">
                             {formatNumber(+dataProduct?.price)}đ / <span style={{ fontSize: "0.8em", fontWeight: "400" }}>sản phẩm</span>
                         </div>
-
-                        <div className="counter">
-                            <div className="btn decrease" onClick={decrease}> <FaMinus /> </div>
-                            <input className="number" value={count} onChange={(event) => handleChangeInput(event?.target.value)} />
-                            <div className="btn increase" onClick={increase}> <TiPlus /> </div>
-                        </div>
                     </div>
 
                     <div className="btn-add-card">
-                        <button>Thêm vào giỏ hàng <IoCart className="icon" /></button>
+                        <button>Liên hệ để đặt hàng <IoCart className="icon" /></button>
                     </div>
 
                     <hr></hr>
                     Hoặc
                     <div className="contact">
-                        Vui lòng liên hệ: <b>0398960639</b> để đặt hàng
+                        Vui lòng liên hệ: <b>0398960639</b> để được tư vấn
                     </div>
                 </div>
             </div>

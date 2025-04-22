@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react';
 import './ProductSection.scss';
 import { getRandomProductAction } from '@/app/action';
+import Image from 'next/image';
 
 const ProductionSection = () => {
     const [data, setData] = useState<any>();
@@ -33,11 +34,14 @@ const ProductionSection = () => {
                     data.map((item: any, index: number) => {
                         return (
                             <div className="each-product" key={item.id}>
-                                <img
-                                    src={item.image}
-                                    alt="Cây sân vườn"
-                                    className="img-product"
-                                />
+                                <div className='img-product'>
+                                    <Image
+                                        src={item.image}
+                                        alt="Cây sân vườn"
+                                        className="image-product"
+                                        fill
+                                    />
+                                </div>
                                 <div className="text-product">
                                     <div className="name-product">
                                         {item.name}

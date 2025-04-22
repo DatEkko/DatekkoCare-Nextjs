@@ -1,6 +1,6 @@
 .contact-container {
-    height : 100vh;
-    display: flex;
+    min-height: 100vh;
+    display   : flex;
 
     .content-left {
         width     : 50%;
@@ -113,4 +113,79 @@
     border-radius: 10px;
     margin-bottom: 20px;
     overflow     : hidden;
+}
+
+@media (max-width: 480px) {
+    .contact-container {
+        flex-direction: column;
+        gap           : 30px;
+
+        .content-left {
+            width     : 100%;
+            margin-top: 80px;
+
+            .title {
+                font-size  : 1.8em;
+                font-weight: 600;
+            }
+
+            .form-contact {
+                padding         : 20px;
+                margin-top      : 25px;
+                background-color: white;
+                height          : 400px;
+                width           : 100%;
+                border-radius   : 10px;
+
+                .button {
+                    button {
+                        border          : none;
+                        outline         : none;
+                        background-color: black;
+                        color           : white;
+                        height          : 50px;
+                        border-radius   : 5px;
+                        width           : 100%;
+                    }
+                }
+            }
+        }
+
+        .content-right {
+            width: 100%;
+
+            .contact-border {
+                .title {
+                    font-size  : 1.2em;
+                    padding    : 20px 0;
+                    font-weight: 800;
+                }
+
+                .address {
+                    padding: 10px 0;
+
+                    .content {
+                        font-size: 1em;
+                    }
+                }
+
+                .phone {
+                    padding: 10px 0;
+
+                    .each-phone {
+                        font-size: 1em;
+                    }
+
+                }
+
+                .email {
+                    padding: 10px 0;
+
+                    .each-mail {
+                        font-size: 1em;
+                    }
+                }
+            }
+        }
+    }
 }

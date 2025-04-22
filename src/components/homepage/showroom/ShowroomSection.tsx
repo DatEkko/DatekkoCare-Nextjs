@@ -6,6 +6,7 @@ import { Scrollbar, Navigation, Autoplay } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/scrollbar';
 import 'swiper/css/navigation';
+import Image from 'next/image';
 
 type DiseasesArticle = {
     organ_id: string | number,
@@ -21,12 +22,12 @@ const ShowroomSection = ({ listDataShowroom }: { listDataShowroom: DiseasesArtic
     const toggleShowData = (index: number) => {
         setShowDataMap((prev) => ({
             ...prev,
-            [index]: !prev[index] // Đảo trạng thái của item đang bấm
+            [index]: !prev[index]
         }));
     };
 
     useEffect(() => {
-        setShowDataMap({}); // Reset khi vào lại trang chủ
+        setShowDataMap({});
     }, []);
 
     return (
@@ -51,9 +52,20 @@ const ShowroomSection = ({ listDataShowroom }: { listDataShowroom: DiseasesArtic
                     >
                         {listDataShowroom.map((item, index) => {
                             return (
-                                <SwiperSlide key={index} style={{
-                                    backgroundImage: `url("${item?.image}")`,
-                                }}>
+                                <SwiperSlide key={index}>
+
+                                    {item?.image && (
+                                        <div className="image-background">
+                                            <Image
+                                                src={item.image}
+                                                alt={item?.name || 'image'}
+                                                fill
+                                                className="object-cover"
+                                                quality={100}
+                                            />
+                                        </div>
+                                    )}
+
                                     <div className='information-showroom'>
                                         <div className='name-project'>{item.name}</div>
 
@@ -64,7 +76,6 @@ const ShowroomSection = ({ listDataShowroom }: { listDataShowroom: DiseasesArtic
                                         <div className='btn-show' onClick={() => toggleShowData(index)}>
                                             {showDataMap[index] ? "Ẩn thông tin" : "Xem thông tin công trình"}
                                         </div>
-
                                     </div>
                                 </SwiperSlide>
                             )
@@ -80,7 +91,7 @@ const ShowroomSection = ({ listDataShowroom }: { listDataShowroom: DiseasesArtic
                 }
 
             </div>
-        </div>
+        </div >
     )
 }
 

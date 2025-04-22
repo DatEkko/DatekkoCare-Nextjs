@@ -1,4 +1,3 @@
-import { Button } from "react-bootstrap";
 import "./ContactComponent.scss";
 import FloatingLabel from 'react-bootstrap/FloatingLabel';
 import Form from 'react-bootstrap/Form';
@@ -69,7 +68,7 @@ const ContactComponent = () => {
                 </div>
             </div>
 
-            <div style={{ fontSize: "1.5em", padding: "10px 0", fontWeight: "600" }}>Vị trí của chúng tôi</div>
+            <div style={{ fontSize: "1.5em", padding: "20px 0", fontWeight: "600" }}>Vị trí của chúng tôi</div>
             <div className="map">
                 <iframe
                     src="https://www.google.com/maps/embed?pb=!1m14!1m8!1m3!1d44340.155021417435!2d106.65693896926075!3d10.799588599087526!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x31752949eb3e795f%3A0xa435dd1685ea2fbc!2zQ8O0bmcgVmnDqm4gSG_DoG5nIFbEg24gVGjhu6U!5e0!3m2!1svi!2s!4v1742459672992!5m2!1svi!2s"

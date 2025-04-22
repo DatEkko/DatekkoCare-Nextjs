@@ -4,6 +4,7 @@ import { getReleatedProductAction } from "@/app/action";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import { FaSearch } from "react-icons/fa";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const RelatedProductComponent = (props: any) => {
     const router = useRouter();
@@ -46,7 +47,13 @@ const RelatedProductComponent = (props: any) => {
                             return (
                                 <div className="each-product-item" key={item.id} onClick={() => handleRedirectPage(item.id)}>
                                     <div className="img-product">
-                                        <img src={item.image} alt="" />
+                                        <Image
+                                            src={item.image}
+                                            alt=""
+                                            fill
+                                            quality={100}
+                                            className="image"
+                                        />
                                     </div>
 
                                     <div className="info">

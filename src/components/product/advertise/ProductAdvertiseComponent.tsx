@@ -1,3 +1,4 @@
+import Image from "next/image";
 import "./ProductAdvertiseComponent.scss";
 import imageSale from "@/assets/product/sale-image.png";
 
@@ -16,8 +17,14 @@ const ProductAdvertiseComponent = () => {
                     </div>
 
                     <div className="content-right">
-                        <div className="image">
-                            <img src={imageSale.src} alt="" />
+                        <div className="image-ad">
+                            <Image
+                                src={imageSale}
+                                alt=""
+                                fill
+                                quality={100}
+                                className="ad"
+                            />
                         </div>
                     </div>
                 </div>

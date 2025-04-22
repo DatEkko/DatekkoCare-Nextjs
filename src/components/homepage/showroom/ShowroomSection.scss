@@ -33,7 +33,7 @@
                 display        : block;
                 background     : center no-repeat;
                 background-size: cover;
-                width          : "100%";
+                width          : 100%;
                 display        : flex;
                 justify-content: end;
                 align-items    : end;
@@ -73,6 +73,15 @@
                         &:active {
                             transform: scale(0.9); // Khi click, thu nhỏ nhẹ để cảm giác tự nhiên hơn
                         }
+                    }
+                }
+
+                .image-background {
+                    width : 100%;
+                    height: 100%;
+
+                    .object-cover {
+                        object-fit: cover;
                     }
                 }
             }
@@ -142,5 +151,124 @@
 
     100% {
         background-position: -200% 0;
+    }
+}
+
+@media (max-width: 480px) {
+    .showroom-section {
+        .main-title {
+            font-size: 1.2em;
+        }
+
+        .slider-container {
+            height: calc(100vh - 80px);
+
+            .swiper {
+                width : 100%;
+                height: 100%;
+
+                .swiper-slide {
+                    .information-showroom {
+                        border-radius   : 10px;
+                        background-color: white;
+                        padding         : 20px;
+                        min-width       : 100%;
+                        z-index         : 3;
+
+                        .name-project {
+                            font-size     : 1.5em;
+                            padding-bottom: 10px;
+                        }
+
+                        .description-project {
+                            font-size: 1em;
+                        }
+
+                        .btn-show {
+                            margin-top      : 10px;
+                            background-color: rgb(4, 92, 27);
+                            color           : white;
+                            width           : fit-content;
+                            padding         : 10px 20px;
+                            border-radius   : 8px;
+                            will-change     : transform;
+                            transition      : transform 0.3s ease-in-out, background-color 0.3s ease-in-out; // Thêm transition
+                            cursor          : pointer;
+
+                            &:hover {
+                                transform: scale(1.05);
+                            }
+
+                            &:active {
+                                transform: scale(0.9); // Khi click, thu nhỏ nhẹ để cảm giác tự nhiên hơn
+                            }
+                        }
+                    }
+
+                    .image-background {
+                        width : 100%;
+                        height: 100%;
+
+                        .object-cover {
+                            object-fit: cover;
+                        }
+                    }
+                }
+
+                .swiper-slide::before {
+                    content   : "";
+                    position  : absolute;
+                    top       : 0;
+                    left      : 0;
+                    width     : 100%;
+                    height    : 100%;
+                    background: rgba(89, 85, 85, 0.211);
+                    z-index   : 1;
+                }
+
+                .swiper-button-prev {
+                    color       : white;
+                    font-weight : 800;
+                    text-shadow : 2px 2px 8px rgba(0, 0, 0, 0.7);
+                    font-size   : 8em;
+                    padding-left: 20px;
+                }
+
+                .swiper-button-next {
+                    color        : white;
+                    font-weight  : 800;
+                    text-shadow  : 2px 2px 8px rgba(0, 0, 0, 0.7);
+                    padding-right: 20px;
+                }
+            }
+
+            .loading-div {
+                height         : 100%;
+                background     : linear-gradient(90deg, #e0e0e0 25%, #f0f0f0 50%, #e0e0e0 75%);
+                background-size: 200% 100%;
+                animation      : skeleton-loading 2.5s infinite linear;
+                padding        : 40px;
+
+                .loading-img {
+                    border-radius   : 8px;
+                    margin-top      : 60px;
+                    background-color: #ccc;
+                    height          : 60%;
+                    display         : flex;
+                    align-items     : center;
+                    justify-content : center;
+                    font-size       : 2em;
+                }
+
+                .loading-info {
+                    border-radius   : 8px;
+                    margin-top      : 40px;
+                    background-color: #ccc;
+                    height          : 20%;
+                    width           : 30%;
+                    float           : right;
+                }
+            }
+        }
     }
 }

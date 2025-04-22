@@ -2,6 +2,7 @@ import "./BannerProductComponent.scss";
 import cay_de_ban from "./../../../assets/product/cay-de-ban.jpg";
 import cay_ngoai_vuon from "./../../../assets/product/cay-ngoai-vuon.jpg";
 import phan_bon from "./../../../assets/product/phan-bon.jpg";
+import Image from "next/image";
 
 const BannerProductComponent = () => {
     return (
@@ -16,12 +17,13 @@ const BannerProductComponent = () => {
                         </div>
                     </div>
                     <div className="image-product">
-                        <img
+                        <Image
                             src={cay_de_ban.src}
                             alt="Cây để bàn"
                             className="img-product"
+                            fill
+                            quality={100}
                         />
-
                     </div>
                 </div>
                 <div className="card-product content-center">
@@ -33,20 +35,24 @@ const BannerProductComponent = () => {
                         </div>
                     </div>
                     <div className="image-product">
-                        <img
+                        <Image
                             src={cay_ngoai_vuon.src}
                             alt="Cây sân vườn"
                             className="img-product"
+                            fill
+                            quality={100}
                         />
 
                     </div>
                 </div>
                 <div className="content-right">
                     <div className="image-product">
-                        <img
+                        <Image
                             src={phan_bon.src}
                             alt="Cây sân vườn"
                             className="img-product"
+                            fill
+                            quality={100}
                         />
                     </div>
 

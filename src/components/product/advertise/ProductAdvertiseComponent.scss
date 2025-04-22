@@ -34,14 +34,56 @@
                 display    : flex;
                 align-items: center;
 
-                .image {
-                    height: 100%;
+                .image-ad {
+                    height  : 100%;
+                    width   : 100%;
+                    position: relative;
 
-                    img {
+                    .ad {
                         width     : 100%;
                         height    : 100%;
                         object-fit: cover;
                     }
+                }
+            }
+        }
+    }
+}
+
+@media (max-width: 480px) {
+    .product-advertise-component-container {
+        background-color: #56ee3bc0;
+        height          : auto;
+
+        .container {
+            padding: 20px;
+
+            .content {
+                height        : 400px;
+                display       : flex;
+                flex-direction: column;
+                gap           : 20px;
+
+                .content-left {
+                    width          : 100%;
+                    height         : 100%;
+                    display        : flex;
+                    flex-direction : column;
+                    justify-content: center;
+
+                    .main-text {
+                        font-family: var(--font-lexend);
+                        font-size  : 1.5em;
+                        font-weight: 600;
+                    }
+
+                    .sub-text {
+                        font-size: 1em;
+                    }
+                }
+
+                .content-right {
+                    width: 100%;
                 }
             }
         }
